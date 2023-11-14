@@ -1,0 +1,1896 @@
+setting auto_restore_mw_cel_lib_setup true
+Initializing gui preferences from file  /u/reethika/.synopsys_dv_prefs.tcl
+dc_shell> source ../scripts/dc-soc.tcl
+Error: Current design is not defined. (UID-4)
+set lib_dir /pkgs/synopsys/2020/32_28nm/SAED32_EDK
+/pkgs/synopsys/2020/32_28nm/SAED32_EDK
+# Decoder ring for the libraries
+# You will need to follow another example or look in the library directories to understand.
+# lib_types is used for the dc/dct linking variables and ICC2 NDM lcoations.
+# /pkgs/synopsys/2020/32_28nm/SAED32_EDK/lib/stdcell_hvt/db_nldm
+# / $lib_dir /lib/ $lib_type /db_nldm
+# link_library, Target_library use the sub_lib_types and corner variables. 
+# For sub_lib_types and corner:
+# Example:
+# saed32hvt_ss0p75v125c.db
+# |sub_lib corner .db
+# The current flow tries to find all sub_lib and all corners in all the search paths. Any match will be put in the library list.
+# Wild cards can be used, but be careful. Multiple matches can occur in ways you don't want.
+# For the target library, the same method is used as the link library except only HVT and RVT lib_types are used.
+# ICC2 NDM choosing also uses the sub_lib_types so that only the required libraries and extras are not loaded.
+set top_design ${top_design}
+ece581_lp_top
+set add_ios 1
+1
+set pad_design 1
+1
+set design_size { 580 580 } 
+ 580 580 
+set design_io_border 310
+310
+set dc_floorplanning 1
+1
+set rtl_list [list ../rtl/$top_design.sv ]
+../rtl/ece581_lp_top.sv
+set slow_corner "ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v"
+ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v
+set fast_corner "ff0p95vn40c ff0p95vn40c_i1p16v ff0p95vn40c_i0p95v ff1p16vn40c ff1p16vn40c_i1p16v ff1p16vn40c_i0p95v"
+ff0p95vn40c ff0p95vn40c_i1p16v ff0p95vn40c_i0p95v ff1p16vn40c ff1p16vn40c_i1p16v ff1p16vn40c_i0p95v
+set synth_corners $slow_corner
+ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v
+set slow_metal Cmax_125
+Cmax_125
+set fast_metal Cmax_125
+Cmax_125
+set lib_types "stdcell_hvt stdcell_rvt stdcell_lvt io_std sram"
+stdcell_hvt stdcell_rvt stdcell_lvt io_std sram
+# Get just the main standard cells, srams and IOs
+set sub_lib_type "saed32?vt_ saed32sram_ saed32io_wb_"
+saed32?vt_ saed32sram_ saed32io_wb_
+# Full MCMM Corners
+if { 0 } {
+    set corners ""
+    #Add Worst corners
+    set corners "$corners ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v"
+    #Add Best corners
+    set corners "$corners ff0p95vn40c ff0p95vn40c_i1p16v ff0p95vn40c_i0p95v ff1p16vn40c ff1p16vn40c_i1p16v ff1p16vn40c_i0p95v"
+    #Add Leakage corners
+    set corners "$corners ff0p95v125c f0p95v125c_i1p16v ff0p95v125c_i0p95v ff1p16v125c ff1p16v125c_i1p16v ff1p16v125c ff1p16v125c_i0p95v"
+    set lib_types "stdcell_hvt stdcell_rvt stdcell_lvt sram_lp"
+    # Get the main standard cells, and also the level shifters. Plus srams.
+    set sub_lib_type "saed32?vt_ saed32?vt_ulvl_ saed32?vt_dlvl_ saed32sram_"
+}
+set topdir [ lindex [ regexp -inline "(.*)\(syn\|pt\|apr\)" [pwd] ] 1 ] 
+/home/reethika/common/Downloads/final_prj-team3-master/
+Running PRESTO HDLC
+Compiling source file ../rtl/ece581_lp_top.sv
+Presto compilation completed successfully.
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff0p85v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff1p16v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_dlvl_ff0p85v125c_i1p16v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ulvl_ff1p16v125c_i0p85v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff0p85v25c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff1p16v25c.db'
+Loading db file '/pkgs/synopsys/2020/design_compiler/syn/Q-2019.12-SP3/libraries/syn/dw_foundation.sldb'
+Loading db file '/pkgs/synopsys/2020/design_compiler/syn/Q-2019.12-SP3/libraries/syn/gtech.db'
+Loading db file '/pkgs/synopsys/2020/design_compiler/syn/Q-2019.12-SP3/libraries/syn/standard.sldb'
+  Loading link library 'saed32hvt_ff0p85v125c'
+  Loading link library 'saed32hvt_ff1p16v125c'
+  Loading link library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'
+  Loading link library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'
+  Loading link library 'saed32hvt_pg_ff0p85v25c'
+  Loading link library 'saed32hvt_pg_ff1p16v25c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully. (ece581_lp_top)
+Elaborated 1 design.
+Current design is now 'ece581_lp_top'.
+Information: Building the design 'modA'. (HDL-193)
+
+Inferred memory devices in process
+        in routine modA line 50 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| soc_A_carry_out_reg | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|  soc_A_sum_out_reg  | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    soc_A_out_reg    | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     soc_A2B_reg     | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|     soc_A2C_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     soc_A2C_reg     | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|     soc_A2D_reg     | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modA)
+Information: Building the design 'modB'. (HDL-193)
+
+Inferred memory devices in process
+        in routine modB line 85 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    soc_equal_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    soc_B_out_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   soc_B1_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_B2A_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_B2C_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_B2D_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modB)
+Information: Building the design 'modC'. (HDL-193)
+Warning:  ../rtl/ece581_lp_top.sv:138: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine modC line 118 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     soc_C2B_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    soc_C_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_C2D_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_C2A_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modC)
+Information: Building the design 'modD'. (HDL-193)
+
+Inferred memory devices in process
+        in routine modD line 159 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     soc_D2C_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|        D_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   soc_D1_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_D2B_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    soc_D_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_D2A_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modD)
+Creating port 'en_A' in design 'ece581_lp_top'.
+Creating port 'en_B' in design 'ece581_lp_top'.
+Creating port 'en_C' in design 'ece581_lp_top'.
+Creating port 'en_D' in design 'ece581_lp_top'.
+
+
+Loading UPF file ../rtl/ece581_lp_top.upf ...
+#set_scope ece581_lp_top
+set upf_create_implicit_supply_sets false
+#create power domains
+create_power_domain pd_TOP -include_scope
+create_power_domain pd_modA -elements {A_inst}
+create_power_domain pd_modB -elements {B_inst}
+create_power_domain pd_modC -elements {C_inst}
+create_power_domain pd_modD -elements {D_inst}
+#create supply ports
+create_supply_port VDDH -direction in -domain pd_TOP 
+create_supply_port VDDL -direction in -domain pd_TOP 
+create_supply_port VSS -direction in -domain pd_TOP 
+# create supply nets
+create_supply_net VDDH -domain pd_TOP 
+create_supply_net VDDL -domain pd_TOP 
+create_supply_net VSS -domain pd_TOP
+create_supply_net VDDH -domain pd_modA -reuse 
+create_supply_net VDDH_A -domain pd_modA 
+create_supply_net VSS -domain pd_modA -reuse
+create_supply_net VDDH -domain pd_modB -reuse
+create_supply_net VDDH_B -domain pd_modB 
+create_supply_net VSS -domain pd_modB -reuse
+create_supply_net VDDL -domain pd_modC -reuse
+create_supply_net VDDL_C -domain pd_modC 
+create_supply_net VSS -domain pd_modC -reuse
+create_supply_net VDDL -domain pd_modD -reuse
+create_supply_net VDDL_D -domain pd_modD 
+create_supply_net VSS -domain pd_modD -reuse
+#connect_supply_nets to ports
+connect_supply_net VDDH -ports {VDDH}
+#connect_supply_net VDDH_H -ports {VDDH}
+connect_supply_net VDDL -ports {VDDL}
+#connect_supply_net VDDL_L -ports {VDDL}
+connect_supply_net VSS -ports {VSS}
+#Primary power connections for the domains
+set_domain_supply_net pd_TOP  -primary_power_net {VDDH} -primary_ground_net {VSS}
+set_domain_supply_net pd_modA -primary_power_net {VDDH_A} -primary_ground_net {VSS}
+set_domain_supply_net pd_modB -primary_power_net {VDDH_B} -primary_ground_net {VSS}
+set_domain_supply_net pd_modC -primary_power_net {VDDL_C} -primary_ground_net {VSS}
+set_domain_supply_net pd_modD -primary_power_net {VDDL_D} -primary_ground_net {VSS}
+#create control ports
+#create_port pwr_cntrl_A
+#create_port pwr_cntrl_B
+#create_port pwr_cntrl_C
+#create_port pwr_cntrl_D
+#
+##create control ports
+#create_port -direction in {pwr_cntrl_A pwr_cntrl_B pwr_cntrl_C pwr_cntrl_D} 
+#create_port pwr_cntrl_A -direction in {ece581_lp_top A_inst} 
+#create_port pwr_cntrl_B -direction in {ece581_lp_top B_inst}
+#create_port pwr_cntrl_C -direction in {ece581_lp_top B_inst}
+#create_port pwr_cntrl_D -direction in {ece581_lp_top B_inst}
+#create power swicthes
+create_power_switch A_switch -domain pd_modA -input_supply_port {VDDH VDDH} -output_supply_port {VDDH_A VDDH_A} -control_port {en_A en_A} -on_state {sw_on VDDH en_A} -off_state {sw_off !en_A}
+create_power_switch B_switch -domain pd_modB -input_supply_port {VDDH VDDH} -output_supply_port {VDDH_B VDDH_B} -control_port {en_B en_B} -on_state {sw_on VDDH en_B} -off_state {sw_off !en_B}
+create_power_switch C_switch -domain pd_modC -input_supply_port {VDDL VDDL} -output_supply_port {VDDL_C VDDL_C} -control_port {en_C en_C} -on_state {sw_on VDDL en_C} -off_state {sw_off !en_C}
+create_power_switch D_switch -domain pd_modD -input_supply_port {VDDL VDDL} -output_supply_port {VDDL_D VDDL_D} -control_port {en_D en_D} -on_state {sw_on VDDL en_D} -off_state {sw_off !en_D}
+#map power switches 
+map_power_switch A_switch -domain pd_modA -lib_cells {HEADX2_HVT}
+map_power_switch B_switch -domain pd_modB -lib_cells {HEADX2_HVT}
+map_power_switch C_switch -domain pd_modC -lib_cells {HEADX2_HVT}
+map_power_switch D_switch -domain pd_modD -lib_cells {HEADX2_HVT}
+#level shifter strategy
+#
+#set_level_shifter ls_modTop2A -elements {A_inst/upf_clk} -domain pd_modA   -location parent
+#set_level_shifter ls_modTop2B -elements {B_inst/upf_clk} -domain pd_modB   -location parent
+set_level_shifter ls_modTop2C -elements {C_inst/upf_clk} -domain pd_modC -force_shift  -rule both  -location parent
+set_level_shifter ls_modTop2D -elements {D_inst/upf_clk} -domain pd_modD  -force_shift -rule both -location parent
+set_level_shifter ls_modB2Top1 -elements {B_inst/soc_B_out} -domain pd_modB   -location parent
+set_level_shifter ls_modB2Top2 -elements {B_inst/soc_B1_out} -domain pd_modB  -location parent
+set_level_shifter ls_modB2Top3 -elements {B_inst/soc_equal} -domain pd_modB   -location parent
+set_level_shifter ls_modB2A -elements {B_inst/soc_B2A} -domain pd_modB   -location parent
+set_level_shifter ls_modB2C -elements {B_inst/soc_B2C} -domain pd_modB   -location parent
+set_level_shifter ls_modB2D -elements {B_inst/soc_B2D} -domain pd_modB   -location parent
+set_level_shifter ls_modA2Top1 -elements {A_inst/soc_A_out} -domain pd_modA   -location parent
+set_level_shifter ls_modA2Top3 -elements {A_inst/soc_A_sum_out} -domain pd_modA   -location parent
+set_level_shifter ls_modA2Top2 -elements {A_inst/soc_A_carry_out} -domain pd_modA  -location parent
+set_level_shifter ls_modA2B -elements {A_inst/soc_A2B} -domain pd_modA -location parent
+set_level_shifter ls_modA2C -elements {A_inst/soc_A2C} -domain pd_modA  -location parent
+set_level_shifter ls_modA2D -elements {A_inst/soc_A2D} -domain pd_modA -location parent
+set_level_shifter ls_modD2Top1 -elements {D_inst/soc_D_out} -domain pd_modD   -location parent
+set_level_shifter ls_modD2Top2 -elements {D_inst/soc_D1_out} -domain pd_modD  -location parent
+set_level_shifter ls_modD2A -elements {D_inst/soc_D2A} -domain pd_modD  -location parent
+set_level_shifter ls_modD2B -elements {D_inst/soc_D2B} -domain pd_modD   -location parent
+set_level_shifter ls_modD2C -elements {D_inst/soc_D2C} -domain pd_modD  -location parent
+set_level_shifter ls_modC2Top -elements {C_inst/soc_C_out} -domain pd_modC   -location parent
+set_level_shifter ls_modC2A -elements {C_inst/soc_C2A} -domain pd_modC   -location parent
+set_level_shifter ls_modC2B -elements {C_inst/soc_C2B} -domain pd_modC   -location parent
+set_level_shifter ls_modC2D -elements {C_inst/soc_C2D} -domain pd_modC  -location parent
+#Isolation cells strategy
+set_isolation iso_A2B -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A2B } 
+set_isolation iso_A2C -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A2C } 
+set_isolation iso_A2D -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A2D } 
+set_isolation iso_A2Top1 -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A_carry_out } 
+set_isolation iso_A2Top2 -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A_out } 
+set_isolation iso_A2Top3 -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A_sum_out} 
+set_isolation iso_B2Top1 -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_B_out} 
+set_isolation iso_B2Top3 -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_B1_out} 
+set_isolation iso_B2Top2 -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_equal} 
+set_isolation iso_B2A -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_B2A} 
+set_isolation iso_B2C -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_B2C} 
+set_isolation iso_B2D -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_B2D} 
+set_isolation iso_C2Top -domain pd_modC -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {C_inst/soc_C_out} 
+set_isolation iso_C2A -domain pd_modC -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {C_inst/soc_C2A} 
+set_isolation iso_C2B -domain pd_modC -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {C_inst/soc_C2B} 
+set_isolation iso_C2D -domain pd_modC -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {C_inst/soc_C2D} 
+set_isolation iso_D2Top1 -domain pd_modD -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {D_inst/soc_D_out} 
+set_isolation iso_D2Top2 -domain pd_modD -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {D_inst/soc_D1_out} 
+set_isolation iso_D2A -domain pd_modD -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {D_inst/soc_D2A} 
+set_isolation iso_D2B -domain pd_modD -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {D_inst/soc_D2B} 
+set_isolation iso_D2C -domain pd_modD -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {D_inst/soc_D2C} 
+set_isolation_control iso_A2B -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_A2C -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_A2D -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_A2Top1 -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_A2Top2 -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_A2Top3 -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_B2Top1 -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_B2Top3 -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_B2Top2 -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_B2A -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_B2C -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_B2D -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_C2Top -domain pd_modC -isolation_signal en_C -isolation_sense low -location parent
+set_isolation_control iso_C2A -domain pd_modC -isolation_signal en_C -isolation_sense low -location parent
+set_isolation_control iso_C2B -domain pd_modC -isolation_signal en_C -isolation_sense low -location parent
+set_isolation_control iso_C2D -domain pd_modC -isolation_signal en_C -isolation_sense low -location parent
+set_isolation_control iso_D2Top1 -domain pd_modD -isolation_signal en_D -isolation_sense low -location parent
+set_isolation_control iso_D2Top2 -domain pd_modD -isolation_signal en_D -isolation_sense low -location parent
+set_isolation_control iso_D2A -domain pd_modD -isolation_signal en_D -isolation_sense low -location parent
+set_isolation_control iso_D2B -domain pd_modD -isolation_signal en_D -isolation_sense low -location parent
+set_isolation_control iso_D2C -domain pd_modD -isolation_signal en_D -isolation_sense low -location parent
+#power state definitions
+add_port_state VDDH -state {on 1.16} -state {off 0.0}
+add_port_state VDDL -state {on 0.85} -state {off 0.0}
+add_port_state VSS -state {off 0.0}
+add_port_state A_switch/VDDH_A -state {on 1.16} -state {off off}
+add_port_state B_switch/VDDH_B -state {on 1.16} -state {off off}
+add_port_state C_switch/VDDL_C -state {on 0.85} -state {off off}
+add_port_state D_switch/VDDL_D -state {on 0.85} -state {off off}
+#power state table
+##
+create_pst my_pst -supplies {VDDH VDDL VSS A_switch/VDDH_A B_switch/VDDH_B  C_switch/VDDL_C D_switch/VDDL_D }
+add_pst_state s1 -pst my_pst -state {on on off off on off off}
+add_pst_state s2 -pst my_pst -state {on on off on off off off}
+add_pst_state s3 -pst my_pst -state {on on off off off off on}
+add_pst_state s4 -pst my_pst -state {on on off on on off off}
+add_pst_state s5 -pst my_pst -state {on on off off off off off}
+add_pst_state s6 -pst my_pst -state {on on off off off on off}
+
+End loading UPF file ../rtl/ece581_lp_top.upf
+#Synopsys Design Constraints
+#Clock constraints
+create_clock -period 2.0 -waveform {0 0.5} -name upf_clk [get_ports upf_clk]
+1
+set_clock_latency 0.1 [get_clocks *]
+1
+set_clock_transition 0.35 [get_clocks *] 
+1
+set_clock_uncertainty 0.5 [get_clocks *]
+1
+#Timing constraints
+set_input_delay -clock upf_clk 1.2 [remove_from_collection [all_inputs] [get_ports upf_clk]]
+1
+set_input_transition 0.33 [all_inputs]
+1
+set_output_delay -clock upf_clk 0.6 [remove_from_collection [all_outputs] [get_ports upf_clk]]
+1
+#
+set_load 0.05 [all_outputs]
+1
+set_drive 1.0 [remove_from_collection [all_inputs] [get_ports upf_clk]]
+1
+#set_driving_cell -lib_cell TNBUFFX1_HVT [all_inputs]
+Using operating conditions 'ff1p16v125c' found in library 'saed32hvt_ff1p16v125c'.
+Using operating conditions 'ff0p85v125c' found in library 'saed32hvt_ff0p85v125c'.
+Using operating conditions 'dlvl_ff0p85v125c_i1p16v' found in library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'.
+Using operating conditions 'ulvl_ff1p16v125c_i0p85v' found in library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'.
+Warning: The value of variable 'compile_preserve_subdesign_interfaces' has been changed to true because '-no_boundary_optimization' is used. (OPT-133)
+Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
+Information: Performing power optimization. (PWR-850)
+Analyzing: "/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_dlvl_ff0p85v125c_i1p16v.db"
+Analyzing: "/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ulvl_ff1p16v125c_i0p85v.db"
+Analyzing: "/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff0p85v25c.db"
+Analyzing: "/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff1p16v25c.db"
+Analyzing: "/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff0p85v125c.db"
+Analyzing: "/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff1p16v125c.db"
+Library analysis succeeded.
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | Q-2019.12-DWBB_201912.3 |     *     |
+| Licensed DW Building Blocks        | Q-2019.12-DWBB_201912.3 |     *     |
+============================================================================
+
+
+Information: There are 13 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+Warning: Found 43 pin to pin connections requiring level shifter(s).  (MV-229)
+Information: Related supplies are not explicitly specified on 23 port(s) and primary supplies (VDDH, VSS) of top power domain will be assumed as the related supply. (UPF-405)
+Information: Total 0 repeater cells are inserted. (UPF-464)
+Information: A total of 24 isolation cells are inserted. (UPF-214)
+  Simplifying Design 'ece581_lp_top'
+
+  Loading target library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'
+  Loading target library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'
+  Loading target library 'saed32hvt_pg_ff0p85v25c'
+  Loading target library 'saed32hvt_pg_ff1p16v25c'
+Loaded alib file './alib-52/saed32hvt_ff0p85v125c.db.alib'
+Loaded alib file './alib-52/saed32hvt_ff1p16v125c.db.alib'
+Loaded alib file './alib-52/saed32hvt_dlvl_ff0p85v125c_i1p16v.db.alib' (placeholder)
+Loaded alib file './alib-52/saed32hvt_ulvl_ff1p16v125c_i0p85v.db.alib' (placeholder)
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'ece581_lp_top'
+  Processing 'modA'
+Information: Added key list 'DesignWare' to design 'modA'. (DDB-72)
+Information: The register 'soc_A_out_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: In design 'modA', the register 'soc_A2B_reg' is removed because it is merged to 'soc_A2D_reg'. (OPT-1215)
+Information: In design 'modA', the register 'soc_A_sum_out_reg[0]' is removed because it is merged to 'soc_A2C_reg[0]'. (OPT-1215)
+  Processing 'modB'
+Information: Added key list 'DesignWare' to design 'modB'. (DDB-72)
+Information: In design 'modB', the register 'soc_B2C_reg' is removed because it is merged to 'soc_B2D_reg'. (OPT-1215)
+Information: In design 'modB', the register 'soc_B2A_reg' is removed because it is merged to 'soc_B2D_reg'. (OPT-1215)
+  Processing 'modD'
+Information: In design 'modD', the register 'soc_D2B_reg' is removed because it is merged to 'soc_D2A_reg'. (OPT-1215)
+Information: In design 'modD', the register 'soc_D2C_reg' is removed because it is merged to 'soc_D2A_reg'. (OPT-1215)
+  Processing 'modC'
+Information: In design 'modC', the register 'soc_C2D_reg' is removed because it is merged to 'soc_C2A_reg'. (OPT-1215)
+Information: In design 'modC', the register 'soc_C2B_reg' is removed because it is merged to 'soc_C2A_reg'. (OPT-1215)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'PMT3_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT2_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT1_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT3_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT2_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT1_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT3_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT2_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT1_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT3_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT2_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT1_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+Information: Inserting inverter snps_iso_control_inv_0 for isolation control signal en_D for iso strategy iso_D2Top2 and potentially other strategies too. (UPF-864)
+Information: Inserting inverter snps_iso_control_inv_1 for isolation control signal en_C for iso strategy iso_C2Top and potentially other strategies too. (UPF-864)
+Information: Inserting inverter snps_iso_control_inv_2 for isolation control signal en_B for iso strategy iso_B2Top3 and potentially other strategies too. (UPF-864)
+Information: Inserting inverter snps_iso_control_inv_3 for isolation control signal en_A for iso strategy iso_A2C and potentially other strategies too. (UPF-864)
+Information: Total 0 level shifters are removed. (MV-238)
+Information: Total 22 level shifters are inserted. (MV-239)
+Warning: 1 nets required level shifters but matching level shifters were not found. (MV-611)
+Warning: 7 nets has level shifter constraints but no level shifters are inserted. (MV-614)
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+Information: compile falsified 10 infeasible paths. (OPT-1720)
+  Mapping Optimization (Phase 1)
+  Mapping Optimization (Phase 2)
+  Mapping Optimization (Phase 3)
+  Mapping Optimization (Phase 4)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:06:07     616.8      1.75      50.3      11.1                           4117050624.0000
+    0:06:07     616.8      1.75      50.3      11.1                           4117050624.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Constant Register Removal
+  -----------------------------------
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Isolate Ports
+  -----------------------
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:06:07     470.7      1.43      32.5       6.7                           1200888704.0000
+    0:06:08     523.5      0.99      28.7       8.6                           1262530304.0000
+    0:06:08     523.5      0.99      28.7       8.6                           1262530304.0000
+    0:06:08     523.5      0.99      28.7       8.6                           1262530304.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+    0:06:08     523.5      0.99      28.7       8.6                           1262530304.0000
+    0:06:08     523.5      0.99      28.7       8.6                           1262530304.0000
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+Information: Level shifter LSDNSSX8_HVT from library saed32hvt_dlvl_ff0p85v125c_i1p16v cannot be inserted to net upf_clk because of main power mismatch(require power pin VDDL to be connected to domain primary power VDDH). (MV-753)
+Information: Level shifter LSDNSSX8_HVT from library saed32hvt_dlvl_ff0p85v125c_i1p16v cannot be inserted to net upf_clk because of main power mismatch(require power pin VDDL to be connected to domain primary power VDDH). (MV-753)
+Information: Total 0 level shifters are removed incrementally. (MV-238)
+Information: Total 0 level shifters are inserted incrementally. (MV-239)
+Warning: 1 nets required level shifters but matching level shifters were not found. (MV-611)
+    0:06:08     475.8      1.02      28.8       8.3                           1266192640.0000
+    0:06:08     401.8      0.98      28.2       8.3                           980904832.0000
+    0:06:08     401.8      0.98      28.2       8.3                           980904832.0000
+    0:06:08     401.8      0.98      28.2       8.3                           980904832.0000
+    0:06:08     401.8      0.98      28.2       8.3                           980904832.0000
+    0:06:08     401.8      0.98      28.2       8.3                           980904832.0000
+    0:06:08     401.8      0.98      28.2       8.3                           980904832.0000
+    0:06:08     399.5      0.97      28.1       8.7                           975909632.0000
+    0:06:08     399.5      0.97      28.1       8.7                           975909632.0000
+    0:06:08     399.5      0.97      28.1       8.7                           975909632.0000
+    0:06:08     399.5      0.97      28.1       8.7                           975909632.0000
+    0:06:09     413.5      0.92      25.8       8.7                           1214126592.0000
+    0:06:09     413.5      0.92      25.8       8.7                           1214126592.0000
+    0:06:09     413.5      0.92      25.8       8.7                           1214126592.0000
+    0:06:09     413.5      0.92      25.8       8.7                           1214126592.0000
+    0:06:09     413.5      0.92      25.8       8.7                           1214126592.0000
+    0:06:09     413.5      0.92      25.8       8.7                           1214126592.0000
+    0:06:09     413.5      0.92      25.8       8.7                           1214126592.0000
+    0:06:09     413.5      0.92      25.8       8.7                           1214126592.0000
+    0:06:10     413.5      0.92      25.8       8.7                           1214126592.0000
+    0:06:10     413.5      0.92      25.8       8.7                           1214126592.0000
+    0:06:10     413.5      0.92      25.8       8.7                           1214126592.0000
+    0:06:10     413.7      0.91      25.4       8.7                           1213006976.0000
+    0:06:10     415.5      0.91      25.5       8.7                           1219922304.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:06:10     415.5      0.91      25.5       8.7                           1219922304.0000
+  Global Optimization (Phase 30)
+  Global Optimization (Phase 31)
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+  Global Optimization (Phase 34)
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+  Global Optimization (Phase 40)
+  Global Optimization (Phase 41)
+  Global Optimization (Phase 42)
+  Global Optimization (Phase 43)
+    0:06:10     400.8      0.84      23.1       8.7                           950334144.0000
+    0:06:11     400.8      0.84      23.1       8.7                           950334144.0000
+    0:06:11     400.8      0.84      23.1       8.7                           950334144.0000
+    0:06:11     400.8      0.84      23.1       8.7                           950334144.0000
+    0:06:11     400.8      0.84      23.1       8.7                           950334144.0000
+    0:06:12     400.8      0.84      23.1       8.7                           950334144.0000
+    0:06:12     400.8      0.84      23.1       8.7                           950334144.0000
+    0:06:12     400.8      0.84      23.1       8.7                           950334144.0000
+    0:06:12     400.8      0.84      23.1       8.7                           950334144.0000
+    0:06:13     400.8      0.84      23.1       8.7                           950334144.0000
+    0:06:13     400.8      0.84      23.1       8.7                           950334144.0000
+    0:06:14     400.8      0.85      23.1       8.7                           950334144.0000
+    0:06:14     400.8      0.85      23.1       8.7                           950334144.0000
+    0:06:14     401.8      0.84      23.1       8.7                           949530112.0000
+    0:06:14     401.8      0.84      23.1       8.7                           949530112.0000
+    0:06:14     401.8      0.84      23.1       8.7                           949530112.0000
+    0:06:14     401.8      0.84      23.1       8.7                           949530112.0000
+    0:06:15     401.8      0.84      23.1       8.7                           949530112.0000
+    0:06:15     401.8      0.84      23.1       8.7                           949530112.0000
+    0:06:15     401.8      0.84      23.1       8.7                           949530112.0000
+    0:06:15     401.8      0.84      23.1       8.7                           949530112.0000
+    0:06:15     401.8      0.84      23.1       8.7                           949530112.0000
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:06:15     401.8      0.84      23.1       8.7                           949530112.0000
+    0:06:15     401.0      0.84      23.1       8.7                           945134336.0000
+    0:06:15     401.0      0.84      23.1       8.7                           945134336.0000
+    0:06:15     401.0      0.84      23.1       8.7                           945134336.0000
+    0:06:15     401.0      0.84      23.1       8.7                           945134336.0000
+    0:06:15     401.0      0.84      23.1       8.7                           945134336.0000
+    0:06:16     401.0      0.84      23.1       8.7                           945134336.0000
+    0:06:16     401.0      0.84      23.1       8.7                           945134336.0000
+    0:06:16     398.5      0.84      23.0       8.7                           939409408.0000
+    0:06:16     398.5      0.84      23.0       8.7                           939409408.0000
+    0:06:16     398.5      0.85      23.0       8.7                           941511296.0000
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff0p85v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff1p16v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_dlvl_ff0p85v125c_i1p16v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ulvl_ff1p16v125c_i0p85v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff0p85v25c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff1p16v25c.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Found 6 pin to pin connections requiring level shifter(s).  (MV-229)
+  Loading target library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'
+  Loading target library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'
+  Loading target library 'saed32hvt_pg_ff0p85v25c'
+  Loading target library 'saed32hvt_pg_ff1p16v25c'
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Writing verilog file '/home/reethika/common/Downloads/final_prj-team3-master/syn/outputs/ece581_lp_top.dc.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+Warning: Verilog writer has added 1 nets to module ece581_lp_top using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+1
+dc_shell> VO-11
+Error: unknown command 'VO-11' (CMD-005)
+dc_shell> report_power
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : ece581_lp_top
+Version: Q-2019.12-SP3
+Date   : Thu Nov  9 18:02:47 2023
+****************************************
+
+
+Library(s) Used:
+
+    saed32hvt_ff1p16v125c (File: /pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff1p16v125c.db)
+    saed32hvt_ulvl_ff1p16v125c_i0p85v (File: /pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ulvl_ff1p16v125c_i0p85v.db)
+    saed32hvt_ff0p85v125c (File: /pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff0p85v125c.db)
+    saed32hvt_dlvl_ff0p85v125c_i1p16v (File: /pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_dlvl_ff0p85v125c_i1p16v.db)
+
+
+Global Operating Voltage = 1.16 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+  Cell Internal Power  = -347.3293 uW  (101%)
+  Net Switching Power  =   4.2522 uW    (0%)
+                         ---------
+Total Dynamic Power    = -343.0771 uW  (100%)
+
+Cell Leakage Power     = 940.7779 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       -3.6664e+02            0.4864        3.5223e+08        -1.3931e+01
+                                                                                 (  -2.33%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational     19.3151            3.7658        5.8855e+08          611.6313  ( 102.33%)
+--------------------------------------------------------------------------------------------------
+Total          -3.4733e+02 uW         4.2522 uW     9.4078e+08 pW       597.7007 uW
+1
+dc_shell> pwd
+/home/reethika/common/Downloads/final_prj-team3-master/syn/work
+dc_shell> source ../scripts/dc-soc.tcl
+Removing design 'ece581_lp_top'
+Removing design 'modA'
+Removing design 'modB'
+Removing design 'modD'
+Removing design 'modC'
+Removing library 'saed32hvt_ff0p85v125c'
+Removing library 'saed32hvt_ff1p16v125c'
+Removing library 'gtech'
+Removing library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'
+Removing library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'
+Removing library 'saed32hvt_pg_ff0p85v25c'
+Removing library 'saed32hvt_pg_ff1p16v25c'
+Removing library 'standard.sldb'
+Removing library 'dw_foundation.sldb'
+Error: Current design is not defined. (UID-4)
+set lib_dir /pkgs/synopsys/2020/32_28nm/SAED32_EDK
+/pkgs/synopsys/2020/32_28nm/SAED32_EDK
+# Decoder ring for the libraries
+# You will need to follow another example or look in the library directories to understand.
+# lib_types is used for the dc/dct linking variables and ICC2 NDM lcoations.
+# /pkgs/synopsys/2020/32_28nm/SAED32_EDK/lib/stdcell_hvt/db_nldm
+# / $lib_dir /lib/ $lib_type /db_nldm
+# link_library, Target_library use the sub_lib_types and corner variables. 
+# For sub_lib_types and corner:
+# Example:
+# saed32hvt_ss0p75v125c.db
+# |sub_lib corner .db
+# The current flow tries to find all sub_lib and all corners in all the search paths. Any match will be put in the library list.
+# Wild cards can be used, but be careful. Multiple matches can occur in ways you don't want.
+# For the target library, the same method is used as the link library except only HVT and RVT lib_types are used.
+# ICC2 NDM choosing also uses the sub_lib_types so that only the required libraries and extras are not loaded.
+set top_design ${top_design}
+ece581_lp_top
+set add_ios 1
+1
+set pad_design 1
+1
+set design_size { 580 580 } 
+ 580 580 
+set design_io_border 310
+310
+set dc_floorplanning 1
+1
+set rtl_list [list ../rtl/$top_design.sv ]
+../rtl/ece581_lp_top.sv
+set slow_corner "ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v"
+ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v
+set fast_corner "ff0p95vn40c ff0p95vn40c_i1p16v ff0p95vn40c_i0p95v ff1p16vn40c ff1p16vn40c_i1p16v ff1p16vn40c_i0p95v"
+ff0p95vn40c ff0p95vn40c_i1p16v ff0p95vn40c_i0p95v ff1p16vn40c ff1p16vn40c_i1p16v ff1p16vn40c_i0p95v
+set synth_corners $slow_corner
+ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v
+set slow_metal Cmax_125
+Cmax_125
+set fast_metal Cmax_125
+Cmax_125
+set lib_types "stdcell_hvt stdcell_rvt stdcell_lvt io_std sram"
+stdcell_hvt stdcell_rvt stdcell_lvt io_std sram
+# Get just the main standard cells, srams and IOs
+set sub_lib_type "saed32?vt_ saed32sram_ saed32io_wb_"
+saed32?vt_ saed32sram_ saed32io_wb_
+# Full MCMM Corners
+if { 0 } {
+    set corners ""
+    #Add Worst corners
+    set corners "$corners ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v"
+    #Add Best corners
+    set corners "$corners ff0p95vn40c ff0p95vn40c_i1p16v ff0p95vn40c_i0p95v ff1p16vn40c ff1p16vn40c_i1p16v ff1p16vn40c_i0p95v"
+    #Add Leakage corners
+    set corners "$corners ff0p95v125c f0p95v125c_i1p16v ff0p95v125c_i0p95v ff1p16v125c ff1p16v125c_i1p16v ff1p16v125c ff1p16v125c_i0p95v"
+    set lib_types "stdcell_hvt stdcell_rvt stdcell_lvt sram_lp"
+    # Get the main standard cells, and also the level shifters. Plus srams.
+    set sub_lib_type "saed32?vt_ saed32?vt_ulvl_ saed32?vt_dlvl_ saed32sram_"
+}
+set topdir [ lindex [ regexp -inline "(.*)\(syn\|pt\|apr\)" [pwd] ] 1 ] 
+/home/reethika/common/Downloads/final_prj-team3-master/
+Running PRESTO HDLC
+Compiling source file ../rtl/ece581_lp_top.sv
+Presto compilation completed successfully.
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff0p85v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff1p16v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_dlvl_ff0p85v125c_i1p16v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ulvl_ff1p16v125c_i0p85v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff0p85v25c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff1p16v25c.db'
+Loading db file '/pkgs/synopsys/2020/design_compiler/syn/Q-2019.12-SP3/libraries/syn/dw_foundation.sldb'
+Loading db file '/pkgs/synopsys/2020/design_compiler/syn/Q-2019.12-SP3/libraries/syn/gtech.db'
+Loading db file '/pkgs/synopsys/2020/design_compiler/syn/Q-2019.12-SP3/libraries/syn/standard.sldb'
+  Loading link library 'saed32hvt_ff0p85v125c'
+  Loading link library 'saed32hvt_ff1p16v125c'
+  Loading link library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'
+  Loading link library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'
+  Loading link library 'saed32hvt_pg_ff0p85v25c'
+  Loading link library 'saed32hvt_pg_ff1p16v25c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully. (ece581_lp_top)
+Elaborated 1 design.
+Current design is now 'ece581_lp_top'.
+Information: Building the design 'modA'. (HDL-193)
+
+Inferred memory devices in process
+        in routine modA line 50 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| soc_A_carry_out_reg | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|  soc_A_sum_out_reg  | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    soc_A_out_reg    | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     soc_A2B_reg     | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|     soc_A2C_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     soc_A2C_reg     | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|     soc_A2D_reg     | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modA)
+Information: Building the design 'modB'. (HDL-193)
+
+Inferred memory devices in process
+        in routine modB line 85 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    soc_equal_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    soc_B_out_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   soc_B1_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_B2A_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_B2C_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_B2D_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modB)
+Information: Building the design 'modC'. (HDL-193)
+Warning:  ../rtl/ece581_lp_top.sv:138: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine modC line 118 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     soc_C2B_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    soc_C_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_C2D_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_C2A_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modC)
+Information: Building the design 'modD'. (HDL-193)
+
+Inferred memory devices in process
+        in routine modD line 159 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     soc_D2C_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|        D_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   soc_D1_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_D2B_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    soc_D_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_D2A_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modD)
+Creating port 'en_A' in design 'ece581_lp_top'.
+Creating port 'en_B' in design 'ece581_lp_top'.
+Creating port 'en_C' in design 'ece581_lp_top'.
+Creating port 'en_D' in design 'ece581_lp_top'.
+Warning: Can't find supply nets or internal power pins matching 'VDDH' in design 'ece581_lp_top'. (UID-95)
+Warning: Can't find supply nets or internal power pins matching 'VDDH_A' in design 'ece581_lp_top'. (UID-95)
+Warning: Can't find supply nets or internal power pins matching 'VDDH_B' in design 'ece581_lp_top'. (UID-95)
+Error: Cannot set_voltage on an empty list of supply net(s). (UPF-087)
+Warning: Can't find supply nets or internal power pins matching 'VDDL' in design 'ece581_lp_top'. (UID-95)
+Warning: Can't find supply nets or internal power pins matching 'VDDL_C' in design 'ece581_lp_top'. (UID-95)
+Warning: Can't find supply nets or internal power pins matching 'VDDL_D' in design 'ece581_lp_top'. (UID-95)
+Error: Cannot set_voltage on an empty list of supply net(s). (UPF-087)
+Warning: Can't find supply nets or internal power pins matching 'VSS' in design 'ece581_lp_top'. (UID-95)
+Error: Cannot set_voltage on an empty list of supply net(s). (UPF-087)
+#Synopsys Design Constraints
+#Clock constraints
+create_clock -period 2.0 -waveform {0 0.5} -name upf_clk [get_ports upf_clk]
+1
+set_clock_latency 0.1 [get_clocks *]
+1
+set_clock_transition 0.35 [get_clocks *] 
+1
+set_clock_uncertainty 0.5 [get_clocks *]
+1
+#Timing constraints
+set_input_delay -clock upf_clk 1.2 [remove_from_collection [all_inputs] [get_ports upf_clk]]
+1
+set_input_transition 0.33 [all_inputs]
+1
+set_output_delay -clock upf_clk 0.6 [remove_from_collection [all_outputs] [get_ports upf_clk]]
+1
+#
+set_load 0.05 [all_outputs]
+1
+set_drive 1.0 [remove_from_collection [all_inputs] [get_ports upf_clk]]
+1
+#set_driving_cell -lib_cell TNBUFFX1_HVT [all_inputs]
+Using operating conditions 'ff1p16v125c' found in library 'saed32hvt_ff1p16v125c'.
+Using operating conditions 'ff0p85v125c' found in library 'saed32hvt_ff0p85v125c'.
+Using operating conditions 'dlvl_ff0p85v125c_i1p16v' found in library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'.
+Using operating conditions 'ulvl_ff1p16v125c_i0p85v' found in library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'.
+Warning: The value of variable 'compile_preserve_subdesign_interfaces' has been changed to true because '-no_boundary_optimization' is used. (OPT-133)
+Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Warning: "The variable 'compile_high_effort_area_in_incremental' is supported in DC NXT only. Ignoring this setting." (OPT-1726)
+
+Information: There are 9 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+Information: A total of 0 isolation cells are inserted. (UPF-214)
+  Simplifying Design 'ece581_lp_top'
+
+  Loading target library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'
+  Loading target library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'
+  Loading target library 'saed32hvt_pg_ff0p85v25c'
+  Loading target library 'saed32hvt_pg_ff1p16v25c'
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'modA'
+Information: Added key list 'DesignWare' to design 'modA'. (DDB-72)
+Information: The register 'soc_A_out_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: In design 'modA', the register 'soc_A2B_reg' is removed because it is merged to 'soc_A2D_reg'. (OPT-1215)
+Information: In design 'modA', the register 'soc_A_sum_out_reg[0]' is removed because it is merged to 'soc_A2C_reg[0]'. (OPT-1215)
+  Processing 'ece581_lp_top'
+  Processing 'modB'
+Information: Added key list 'DesignWare' to design 'modB'. (DDB-72)
+Information: In design 'modB', the register 'soc_B2C_reg' is removed because it is merged to 'soc_B2D_reg'. (OPT-1215)
+Information: In design 'modB', the register 'soc_B2A_reg' is removed because it is merged to 'soc_B2D_reg'. (OPT-1215)
+  Processing 'modD'
+Information: In design 'modD', the register 'soc_D2B_reg' is removed because it is merged to 'soc_D2A_reg'. (OPT-1215)
+Information: In design 'modD', the register 'soc_D2C_reg' is removed because it is merged to 'soc_D2A_reg'. (OPT-1215)
+  Processing 'modC'
+Information: In design 'modC', the register 'soc_C2D_reg' is removed because it is merged to 'soc_C2A_reg'. (OPT-1215)
+Information: In design 'modC', the register 'soc_C2B_reg' is removed because it is merged to 'soc_C2A_reg'. (OPT-1215)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'PMT3_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT2_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT1_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT3_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT2_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT1_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT3_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT2_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT1_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT3_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT2_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT1_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+Information: Total 0 level shifters are removed. (MV-238)
+Information: Total 0 level shifters are inserted. (MV-239)
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:11:17     283.9      1.06      13.7       0.0                           2199299840.0000
+    0:11:18     283.9      1.06      13.7       0.0                           2199299840.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Constant Register Removal
+  -----------------------------------
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 44)
+  Global Optimization (Phase 45)
+  Global Optimization (Phase 46)
+  Global Optimization (Phase 47)
+  Global Optimization (Phase 48)
+  Global Optimization (Phase 49)
+  Global Optimization (Phase 50)
+  Global Optimization (Phase 51)
+  Global Optimization (Phase 52)
+  Global Optimization (Phase 53)
+  Global Optimization (Phase 54)
+  Global Optimization (Phase 55)
+  Global Optimization (Phase 56)
+  Global Optimization (Phase 57)
+  Global Optimization (Phase 58)
+  Global Optimization (Phase 59)
+  Global Optimization (Phase 60)
+  Global Optimization (Phase 61)
+  Global Optimization (Phase 62)
+  Global Optimization (Phase 63)
+  Global Optimization (Phase 64)
+  Global Optimization (Phase 65)
+  Global Optimization (Phase 66)
+  Global Optimization (Phase 67)
+  Global Optimization (Phase 68)
+  Global Optimization (Phase 69)
+  Global Optimization (Phase 70)
+  Global Optimization (Phase 71)
+  Global Optimization (Phase 72)
+  Global Optimization (Phase 73)
+  Global Optimization (Phase 74)
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Isolate Ports
+  -----------------------
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:11:18     214.0      0.87      10.6       0.0                           866713088.0000
+    0:11:18     231.3      0.81      10.1       0.0                           967419200.0000
+    0:11:18     231.3      0.81      10.1       0.0                           967419200.0000
+    0:11:18     231.3      0.81      10.1       0.0                           967419200.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+    0:11:18     231.3      0.81      10.1       0.0                           967419200.0000
+    0:11:18     231.3      0.81      10.1       0.0                           967419200.0000
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+Information: Total 0 level shifters are removed incrementally. (MV-238)
+Information: Total 0 level shifters are inserted incrementally. (MV-239)
+    0:11:18     228.2      0.81      10.2       0.0                           952659776.0000
+    0:11:18     227.7      0.81      10.1       0.0                           942173504.0000
+    0:11:18     227.7      0.81      10.1       0.0                           942173504.0000
+    0:11:18     227.7      0.81      10.1       0.0                           942173504.0000
+    0:11:18     227.7      0.81      10.1       0.0                           942173504.0000
+    0:11:18     228.5      0.80      10.1       0.0                           941498048.0000
+    0:11:18     228.5      0.80      10.1       0.0                           941498048.0000
+    0:11:18     228.5      0.80      10.1       0.0                           943599872.0000
+    0:11:18     228.5      0.80      10.1       0.0                           943599872.0000
+    0:11:18     228.5      0.80      10.1       0.0                           943599872.0000
+    0:11:18     228.5      0.80      10.1       0.0                           943599872.0000
+    0:11:19     228.0      0.79      10.1       0.0                           949093632.0000
+    0:11:19     228.0      0.79      10.1       0.0                           949093632.0000
+    0:11:19     228.2      0.79      10.0       0.0                           949809856.0000
+    0:11:19     228.2      0.79      10.0       0.0                           949809856.0000
+    0:11:19     228.2      0.79      10.0       0.0                           949809856.0000
+    0:11:19     228.2      0.79      10.0       0.0                           949809856.0000
+    0:11:19     228.2      0.79      10.0       0.0                           949809856.0000
+    0:11:19     228.2      0.79      10.0       0.0                           949809856.0000
+    0:11:19     228.2      0.79      10.0       0.0                           949809856.0000
+    0:11:19     228.2      0.79      10.0       0.0                           949809856.0000
+    0:11:19     228.2      0.79      10.0       0.0                           949809856.0000
+    0:11:19     229.5      0.76       9.6       0.0                           961177216.0000
+    0:11:19     229.5      0.76       9.6       0.0                           961177216.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:11:19     229.5      0.76       9.6       0.0                           961177216.0000
+  Global Optimization (Phase 75)
+  Global Optimization (Phase 76)
+  Global Optimization (Phase 77)
+  Global Optimization (Phase 78)
+  Global Optimization (Phase 79)
+  Global Optimization (Phase 80)
+  Global Optimization (Phase 81)
+  Global Optimization (Phase 82)
+  Global Optimization (Phase 83)
+  Global Optimization (Phase 84)
+  Global Optimization (Phase 85)
+  Global Optimization (Phase 86)
+  Global Optimization (Phase 87)
+    0:11:20     223.1      0.76       9.6       0.0                           914141888.0000
+    0:11:20     223.1      0.76       9.6       0.0                           914141888.0000
+    0:11:20     223.1      0.76       9.6       0.0                           914141888.0000
+    0:11:20     223.1      0.76       9.6       0.0                           914141888.0000
+    0:11:20     223.1      0.76       9.6       0.0                           914141888.0000
+    0:11:20     223.1      0.76       9.6       0.0                           914141888.0000
+    0:11:20     223.1      0.76       9.6       0.0                           914141888.0000
+    0:11:20     223.1      0.76       9.6       0.0                           914141888.0000
+    0:11:20     223.1      0.76       9.6       0.0                           914141888.0000
+    0:11:20     223.1      0.76       9.6       0.0                           914141888.0000
+    0:11:20     223.1      0.76       9.6       0.0                           914141888.0000
+    0:11:20     225.7      0.75       9.6       0.0                           934336128.0000
+    0:11:20     225.7      0.75       9.6       0.0                           934336128.0000
+    0:11:20     225.7      0.75       9.6       0.0                           934336128.0000
+    0:11:20     225.7      0.75       9.6       0.0                           934336128.0000
+    0:11:21     225.7      0.75       9.6       0.0                           934336128.0000
+    0:11:21     225.7      0.75       9.6       0.0                           934336128.0000
+    0:11:21     225.7      0.75       9.6       0.0                           934336128.0000
+    0:11:21     225.7      0.75       9.6       0.0                           934336128.0000
+    0:11:21     225.7      0.75       9.6       0.0                           934336128.0000
+    0:11:21     225.7      0.75       9.6       0.0                           934336128.0000
+    0:11:21     225.7      0.75       9.6       0.0                           934336128.0000
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:11:21     225.7      0.75       9.6       0.0                           934336128.0000
+    0:11:21     235.1      0.76      10.0       0.0                           1113260288.0000
+    0:11:21     233.3      0.75       9.8       0.0                           1081866112.0000
+    0:11:21     233.3      0.75       9.8       0.0                           1081866112.0000
+    0:11:21     228.5      0.75       9.8       0.0                           994036480.0000
+    0:11:21     225.4      0.75       9.6       0.0                           936808512.0000
+    0:11:21     225.4      0.75       9.6       0.0                           936808512.0000
+    0:11:21     225.4      0.75       9.6       0.0                           936808512.0000
+    0:11:22     224.9      0.75       9.6       0.0                           926747904.0000
+    0:11:22     224.9      0.75       9.6       0.0                           926747904.0000
+    0:11:22     224.9      0.75       9.6       0.0                           926747904.0000
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff0p85v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff1p16v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_dlvl_ff0p85v125c_i1p16v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ulvl_ff1p16v125c_i0p85v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff0p85v25c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff1p16v25c.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+  Loading target library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'
+  Loading target library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'
+  Loading target library 'saed32hvt_pg_ff0p85v25c'
+  Loading target library 'saed32hvt_pg_ff1p16v25c'
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Writing verilog file '/home/reethika/common/Downloads/final_prj-team3-master/syn/outputs/ece581_lp_top.dc.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+Warning: Verilog writer has added 1 nets to module ece581_lp_top using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+1
+dc_shell> report_power
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : ece581_lp_top
+Version: Q-2019.12-SP3
+Date   : Thu Nov  9 18:07:39 2023
+****************************************
+
+
+Library(s) Used:
+
+    saed32hvt_ff1p16v125c (File: /pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff1p16v125c.db)
+
+
+Global Operating Voltage = 1.16 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+  Cell Internal Power  = -510.1362 uW  (101%)
+  Net Switching Power  =   2.9970 uW    (0%)
+                         ---------
+Total Dynamic Power    = -507.1392 uW  (100%)
+
+Cell Leakage Power     = 907.5037 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       -5.2228e+02            0.3806        4.9902e+08        -2.2876e+01
+                                                                                 (  -5.71%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational     12.1445            2.6164        4.0848e+08          423.2405  ( 105.71%)
+--------------------------------------------------------------------------------------------------
+Total          -5.1014e+02 uW         2.9970 uW     9.0750e+08 pW       400.3646 uW
+1
+dc_shell> pwd
+/home/reethika/common/Downloads/final_prj-team3-master/syn/work
+dc_shell> source ../scripts/dc-soc.tcl
+Removing design 'modA'
+Removing design 'ece581_lp_top'
+Removing design 'modB'
+Removing design 'modD'
+Removing design 'modC'
+Removing library 'saed32hvt_ff0p85v125c'
+Removing library 'saed32hvt_ff1p16v125c'
+Removing library 'gtech'
+Removing library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'
+Removing library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'
+Removing library 'saed32hvt_pg_ff0p85v25c'
+Removing library 'saed32hvt_pg_ff1p16v25c'
+Removing library 'standard.sldb'
+Removing library 'dw_foundation.sldb'
+Error: Current design is not defined. (UID-4)
+set lib_dir /pkgs/synopsys/2020/32_28nm/SAED32_EDK
+/pkgs/synopsys/2020/32_28nm/SAED32_EDK
+# Decoder ring for the libraries
+# You will need to follow another example or look in the library directories to understand.
+# lib_types is used for the dc/dct linking variables and ICC2 NDM lcoations.
+# /pkgs/synopsys/2020/32_28nm/SAED32_EDK/lib/stdcell_hvt/db_nldm
+# / $lib_dir /lib/ $lib_type /db_nldm
+# link_library, Target_library use the sub_lib_types and corner variables. 
+# For sub_lib_types and corner:
+# Example:
+# saed32hvt_ss0p75v125c.db
+# |sub_lib corner .db
+# The current flow tries to find all sub_lib and all corners in all the search paths. Any match will be put in the library list.
+# Wild cards can be used, but be careful. Multiple matches can occur in ways you don't want.
+# For the target library, the same method is used as the link library except only HVT and RVT lib_types are used.
+# ICC2 NDM choosing also uses the sub_lib_types so that only the required libraries and extras are not loaded.
+set top_design ${top_design}
+ece581_lp_top
+set add_ios 1
+1
+set pad_design 1
+1
+set design_size { 580 580 } 
+ 580 580 
+set design_io_border 310
+310
+set dc_floorplanning 1
+1
+set rtl_list [list ../rtl/$top_design.sv ]
+../rtl/ece581_lp_top.sv
+set slow_corner "ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v"
+ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v
+set fast_corner "ff0p95vn40c ff0p95vn40c_i1p16v ff0p95vn40c_i0p95v ff1p16vn40c ff1p16vn40c_i1p16v ff1p16vn40c_i0p95v"
+ff0p95vn40c ff0p95vn40c_i1p16v ff0p95vn40c_i0p95v ff1p16vn40c ff1p16vn40c_i1p16v ff1p16vn40c_i0p95v
+set synth_corners $slow_corner
+ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v
+set slow_metal Cmax_125
+Cmax_125
+set fast_metal Cmax_125
+Cmax_125
+set lib_types "stdcell_hvt stdcell_rvt stdcell_lvt io_std sram"
+stdcell_hvt stdcell_rvt stdcell_lvt io_std sram
+# Get just the main standard cells, srams and IOs
+set sub_lib_type "saed32?vt_ saed32sram_ saed32io_wb_"
+saed32?vt_ saed32sram_ saed32io_wb_
+# Full MCMM Corners
+if { 0 } {
+    set corners ""
+    #Add Worst corners
+    set corners "$corners ss0p75vn40c ss0p75vn40c_i0p95v ss0p75vn40c_i0p75v ss0p95vn40c ss0p95vn40c_i0p75v"
+    #Add Best corners
+    set corners "$corners ff0p95vn40c ff0p95vn40c_i1p16v ff0p95vn40c_i0p95v ff1p16vn40c ff1p16vn40c_i1p16v ff1p16vn40c_i0p95v"
+    #Add Leakage corners
+    set corners "$corners ff0p95v125c f0p95v125c_i1p16v ff0p95v125c_i0p95v ff1p16v125c ff1p16v125c_i1p16v ff1p16v125c ff1p16v125c_i0p95v"
+    set lib_types "stdcell_hvt stdcell_rvt stdcell_lvt sram_lp"
+    # Get the main standard cells, and also the level shifters. Plus srams.
+    set sub_lib_type "saed32?vt_ saed32?vt_ulvl_ saed32?vt_dlvl_ saed32sram_"
+}
+set topdir [ lindex [ regexp -inline "(.*)\(syn\|pt\|apr\)" [pwd] ] 1 ] 
+/home/reethika/common/Downloads/final_prj-team3-master/
+Running PRESTO HDLC
+Compiling source file ../rtl/ece581_lp_top.sv
+Presto compilation completed successfully.
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff0p85v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff1p16v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_dlvl_ff0p85v125c_i1p16v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ulvl_ff1p16v125c_i0p85v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff0p85v25c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff1p16v25c.db'
+Loading db file '/pkgs/synopsys/2020/design_compiler/syn/Q-2019.12-SP3/libraries/syn/dw_foundation.sldb'
+Loading db file '/pkgs/synopsys/2020/design_compiler/syn/Q-2019.12-SP3/libraries/syn/gtech.db'
+Loading db file '/pkgs/synopsys/2020/design_compiler/syn/Q-2019.12-SP3/libraries/syn/standard.sldb'
+  Loading link library 'saed32hvt_ff0p85v125c'
+  Loading link library 'saed32hvt_ff1p16v125c'
+  Loading link library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'
+  Loading link library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'
+  Loading link library 'saed32hvt_pg_ff0p85v25c'
+  Loading link library 'saed32hvt_pg_ff1p16v25c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully. (ece581_lp_top)
+Elaborated 1 design.
+Current design is now 'ece581_lp_top'.
+Information: Building the design 'modA'. (HDL-193)
+
+Inferred memory devices in process
+        in routine modA line 50 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| soc_A_carry_out_reg | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|  soc_A_sum_out_reg  | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    soc_A_out_reg    | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     soc_A2B_reg     | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|     soc_A2C_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     soc_A2C_reg     | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|     soc_A2D_reg     | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modA)
+Information: Building the design 'modB'. (HDL-193)
+
+Inferred memory devices in process
+        in routine modB line 85 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    soc_equal_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    soc_B_out_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   soc_B1_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_B2A_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_B2C_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_B2D_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modB)
+Information: Building the design 'modC'. (HDL-193)
+Warning:  ../rtl/ece581_lp_top.sv:138: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine modC line 118 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     soc_C2B_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    soc_C_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_C2D_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_C2A_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modC)
+Information: Building the design 'modD'. (HDL-193)
+
+Inferred memory devices in process
+        in routine modD line 159 in file
+                '../rtl/ece581_lp_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     soc_D2C_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|        D_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   soc_D1_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_D2B_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    soc_D_out_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     soc_D2A_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (modD)
+Creating port 'en_A' in design 'ece581_lp_top'.
+Creating port 'en_B' in design 'ece581_lp_top'.
+Creating port 'en_C' in design 'ece581_lp_top'.
+Creating port 'en_D' in design 'ece581_lp_top'.
+
+
+Loading UPF file ../rtl/ece581_lp_top.upf ...
+#set_scope ece581_lp_top
+set upf_create_implicit_supply_sets false
+#create power domains
+create_power_domain pd_TOP -include_scope
+create_power_domain pd_modA -elements {A_inst}
+create_power_domain pd_modB -elements {B_inst}
+create_power_domain pd_modC -elements {C_inst}
+create_power_domain pd_modD -elements {D_inst}
+#create supply ports
+create_supply_port VDDH -direction in -domain pd_TOP 
+create_supply_port VDDL -direction in -domain pd_TOP 
+create_supply_port VSS -direction in -domain pd_TOP 
+# create supply nets
+create_supply_net VDDH -domain pd_TOP 
+create_supply_net VDDL -domain pd_TOP 
+create_supply_net VSS -domain pd_TOP
+create_supply_net VDDH -domain pd_modA -reuse 
+create_supply_net VDDH_A -domain pd_modA 
+create_supply_net VSS -domain pd_modA -reuse
+create_supply_net VDDH -domain pd_modB -reuse
+create_supply_net VDDH_B -domain pd_modB 
+create_supply_net VSS -domain pd_modB -reuse
+create_supply_net VDDL -domain pd_modC -reuse
+create_supply_net VDDL_C -domain pd_modC 
+create_supply_net VSS -domain pd_modC -reuse
+create_supply_net VDDL -domain pd_modD -reuse
+create_supply_net VDDL_D -domain pd_modD 
+create_supply_net VSS -domain pd_modD -reuse
+#connect_supply_nets to ports
+connect_supply_net VDDH -ports {VDDH}
+#connect_supply_net VDDH_H -ports {VDDH}
+connect_supply_net VDDL -ports {VDDL}
+#connect_supply_net VDDL_L -ports {VDDL}
+connect_supply_net VSS -ports {VSS}
+#Primary power connections for the domains
+set_domain_supply_net pd_TOP  -primary_power_net {VDDH} -primary_ground_net {VSS}
+set_domain_supply_net pd_modA -primary_power_net {VDDH_A} -primary_ground_net {VSS}
+set_domain_supply_net pd_modB -primary_power_net {VDDH_B} -primary_ground_net {VSS}
+set_domain_supply_net pd_modC -primary_power_net {VDDL_C} -primary_ground_net {VSS}
+set_domain_supply_net pd_modD -primary_power_net {VDDL_D} -primary_ground_net {VSS}
+#create control ports
+#create_port pwr_cntrl_A
+#create_port pwr_cntrl_B
+#create_port pwr_cntrl_C
+#create_port pwr_cntrl_D
+#
+##create control ports
+#create_port -direction in {pwr_cntrl_A pwr_cntrl_B pwr_cntrl_C pwr_cntrl_D} 
+#create_port pwr_cntrl_A -direction in {ece581_lp_top A_inst} 
+#create_port pwr_cntrl_B -direction in {ece581_lp_top B_inst}
+#create_port pwr_cntrl_C -direction in {ece581_lp_top B_inst}
+#create_port pwr_cntrl_D -direction in {ece581_lp_top B_inst}
+#create power swicthes
+create_power_switch A_switch -domain pd_modA -input_supply_port {VDDH VDDH} -output_supply_port {VDDH_A VDDH_A} -control_port {en_A en_A} -on_state {sw_on VDDH en_A} -off_state {sw_off !en_A}
+create_power_switch B_switch -domain pd_modB -input_supply_port {VDDH VDDH} -output_supply_port {VDDH_B VDDH_B} -control_port {en_B en_B} -on_state {sw_on VDDH en_B} -off_state {sw_off !en_B}
+create_power_switch C_switch -domain pd_modC -input_supply_port {VDDL VDDL} -output_supply_port {VDDL_C VDDL_C} -control_port {en_C en_C} -on_state {sw_on VDDL en_C} -off_state {sw_off !en_C}
+create_power_switch D_switch -domain pd_modD -input_supply_port {VDDL VDDL} -output_supply_port {VDDL_D VDDL_D} -control_port {en_D en_D} -on_state {sw_on VDDL en_D} -off_state {sw_off !en_D}
+#map power switches 
+map_power_switch A_switch -domain pd_modA -lib_cells {HEADX2_HVT}
+map_power_switch B_switch -domain pd_modB -lib_cells {HEADX2_HVT}
+map_power_switch C_switch -domain pd_modC -lib_cells {HEADX2_HVT}
+map_power_switch D_switch -domain pd_modD -lib_cells {HEADX2_HVT}
+#level shifter strategy
+#
+#set_level_shifter ls_modTop2A -elements {A_inst/upf_clk} -domain pd_modA   -location parent
+#set_level_shifter ls_modTop2B -elements {B_inst/upf_clk} -domain pd_modB   -location parent
+set_level_shifter ls_modTop2C -elements {C_inst/upf_clk} -domain pd_modC -force_shift  -rule both  -location parent
+set_level_shifter ls_modTop2D -elements {D_inst/upf_clk} -domain pd_modD  -force_shift -rule both -location parent
+set_level_shifter ls_modB2Top1 -elements {B_inst/soc_B_out} -domain pd_modB   -location parent
+set_level_shifter ls_modB2Top2 -elements {B_inst/soc_B1_out} -domain pd_modB  -location parent
+set_level_shifter ls_modB2Top3 -elements {B_inst/soc_equal} -domain pd_modB   -location parent
+set_level_shifter ls_modB2A -elements {B_inst/soc_B2A} -domain pd_modB   -location parent
+set_level_shifter ls_modB2C -elements {B_inst/soc_B2C} -domain pd_modB   -location parent
+set_level_shifter ls_modB2D -elements {B_inst/soc_B2D} -domain pd_modB   -location parent
+set_level_shifter ls_modA2Top1 -elements {A_inst/soc_A_out} -domain pd_modA   -location parent
+set_level_shifter ls_modA2Top3 -elements {A_inst/soc_A_sum_out} -domain pd_modA   -location parent
+set_level_shifter ls_modA2Top2 -elements {A_inst/soc_A_carry_out} -domain pd_modA  -location parent
+set_level_shifter ls_modA2B -elements {A_inst/soc_A2B} -domain pd_modA -location parent
+set_level_shifter ls_modA2C -elements {A_inst/soc_A2C} -domain pd_modA  -location parent
+set_level_shifter ls_modA2D -elements {A_inst/soc_A2D} -domain pd_modA -location parent
+set_level_shifter ls_modD2Top1 -elements {D_inst/soc_D_out} -domain pd_modD   -location parent
+set_level_shifter ls_modD2Top2 -elements {D_inst/soc_D1_out} -domain pd_modD  -location parent
+set_level_shifter ls_modD2A -elements {D_inst/soc_D2A} -domain pd_modD  -location parent
+set_level_shifter ls_modD2B -elements {D_inst/soc_D2B} -domain pd_modD   -location parent
+set_level_shifter ls_modD2C -elements {D_inst/soc_D2C} -domain pd_modD  -location parent
+set_level_shifter ls_modC2Top -elements {C_inst/soc_C_out} -domain pd_modC   -location parent
+set_level_shifter ls_modC2A -elements {C_inst/soc_C2A} -domain pd_modC   -location parent
+set_level_shifter ls_modC2B -elements {C_inst/soc_C2B} -domain pd_modC   -location parent
+set_level_shifter ls_modC2D -elements {C_inst/soc_C2D} -domain pd_modC  -location parent
+#Isolation cells strategy
+set_isolation iso_A2B -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A2B } 
+set_isolation iso_A2C -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A2C } 
+set_isolation iso_A2D -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A2D } 
+set_isolation iso_A2Top1 -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A_carry_out } 
+set_isolation iso_A2Top2 -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A_out } 
+set_isolation iso_A2Top3 -domain pd_modA -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {A_inst/soc_A_sum_out} 
+set_isolation iso_B2Top1 -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_B_out} 
+set_isolation iso_B2Top3 -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_B1_out} 
+set_isolation iso_B2Top2 -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_equal} 
+set_isolation iso_B2A -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_B2A} 
+set_isolation iso_B2C -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_B2C} 
+set_isolation iso_B2D -domain pd_modB -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 0 -elements {B_inst/soc_B2D} 
+set_isolation iso_C2Top -domain pd_modC -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {C_inst/soc_C_out} 
+set_isolation iso_C2A -domain pd_modC -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {C_inst/soc_C2A} 
+set_isolation iso_C2B -domain pd_modC -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {C_inst/soc_C2B} 
+set_isolation iso_C2D -domain pd_modC -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {C_inst/soc_C2D} 
+set_isolation iso_D2Top1 -domain pd_modD -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {D_inst/soc_D_out} 
+set_isolation iso_D2Top2 -domain pd_modD -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {D_inst/soc_D1_out} 
+set_isolation iso_D2A -domain pd_modD -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {D_inst/soc_D2A} 
+set_isolation iso_D2B -domain pd_modD -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {D_inst/soc_D2B} 
+set_isolation iso_D2C -domain pd_modD -isolation_power_net VDDH -isolation_ground_net VSS -clamp_value 1 -elements {D_inst/soc_D2C} 
+set_isolation_control iso_A2B -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_A2C -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_A2D -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_A2Top1 -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_A2Top2 -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_A2Top3 -domain pd_modA -isolation_signal en_A -isolation_sense low -location parent
+set_isolation_control iso_B2Top1 -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_B2Top3 -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_B2Top2 -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_B2A -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_B2C -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_B2D -domain pd_modB -isolation_signal en_B -isolation_sense low -location parent
+set_isolation_control iso_C2Top -domain pd_modC -isolation_signal en_C -isolation_sense low -location parent
+set_isolation_control iso_C2A -domain pd_modC -isolation_signal en_C -isolation_sense low -location parent
+set_isolation_control iso_C2B -domain pd_modC -isolation_signal en_C -isolation_sense low -location parent
+set_isolation_control iso_C2D -domain pd_modC -isolation_signal en_C -isolation_sense low -location parent
+set_isolation_control iso_D2Top1 -domain pd_modD -isolation_signal en_D -isolation_sense low -location parent
+set_isolation_control iso_D2Top2 -domain pd_modD -isolation_signal en_D -isolation_sense low -location parent
+set_isolation_control iso_D2A -domain pd_modD -isolation_signal en_D -isolation_sense low -location parent
+set_isolation_control iso_D2B -domain pd_modD -isolation_signal en_D -isolation_sense low -location parent
+set_isolation_control iso_D2C -domain pd_modD -isolation_signal en_D -isolation_sense low -location parent
+#power state definitions
+add_port_state VDDH -state {on 1.16} -state {off 0.0}
+add_port_state VDDL -state {on 0.85} -state {off 0.0}
+add_port_state VSS -state {off 0.0}
+add_port_state A_switch/VDDH_A -state {on 1.16} -state {off off}
+add_port_state B_switch/VDDH_B -state {on 1.16} -state {off off}
+add_port_state C_switch/VDDL_C -state {on 0.85} -state {off off}
+add_port_state D_switch/VDDL_D -state {on 0.85} -state {off off}
+#power state table
+##
+create_pst my_pst -supplies {VDDH VDDL VSS A_switch/VDDH_A B_switch/VDDH_B  C_switch/VDDL_C D_switch/VDDL_D }
+add_pst_state s1 -pst my_pst -state {on on off off on off off}
+add_pst_state s2 -pst my_pst -state {on on off on off off off}
+add_pst_state s3 -pst my_pst -state {on on off off off off on}
+add_pst_state s4 -pst my_pst -state {on on off on on off off}
+add_pst_state s5 -pst my_pst -state {on on off off off off off}
+add_pst_state s6 -pst my_pst -state {on on off off off on off}
+
+End loading UPF file ../rtl/ece581_lp_top.upf
+#Synopsys Design Constraints
+#Clock constraints
+create_clock -period 2.0 -waveform {0 0.5} -name upf_clk [get_ports upf_clk]
+1
+set_clock_latency 0.1 [get_clocks *]
+1
+set_clock_transition 0.35 [get_clocks *] 
+1
+set_clock_uncertainty 0.5 [get_clocks *]
+1
+#Timing constraints
+set_input_delay -clock upf_clk 1.2 [remove_from_collection [all_inputs] [get_ports upf_clk]]
+1
+set_input_transition 0.33 [all_inputs]
+1
+set_output_delay -clock upf_clk 0.6 [remove_from_collection [all_outputs] [get_ports upf_clk]]
+1
+#
+set_load 0.05 [all_outputs]
+1
+set_drive 1.0 [remove_from_collection [all_inputs] [get_ports upf_clk]]
+1
+#set_driving_cell -lib_cell TNBUFFX1_HVT [all_inputs]
+Using operating conditions 'ff1p16v125c' found in library 'saed32hvt_ff1p16v125c'.
+Using operating conditions 'ff0p85v125c' found in library 'saed32hvt_ff0p85v125c'.
+Using operating conditions 'dlvl_ff0p85v125c_i1p16v' found in library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'.
+Using operating conditions 'ulvl_ff1p16v125c_i0p85v' found in library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'.
+Warning: The value of variable 'compile_preserve_subdesign_interfaces' has been changed to true because '-no_boundary_optimization' is used. (OPT-133)
+Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Warning: "The variable 'compile_high_effort_area_in_incremental' is supported in DC NXT only. Ignoring this setting." (OPT-1726)
+
+Information: There are 13 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+Warning: Found 43 pin to pin connections requiring level shifter(s).  (MV-229)
+Information: Related supplies are not explicitly specified on 23 port(s) and primary supplies (VDDH, VSS) of top power domain will be assumed as the related supply. (UPF-405)
+Information: Total 0 repeater cells are inserted. (UPF-464)
+Information: A total of 24 isolation cells are inserted. (UPF-214)
+  Simplifying Design 'ece581_lp_top'
+
+  Loading target library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'
+  Loading target library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'
+  Loading target library 'saed32hvt_pg_ff0p85v25c'
+  Loading target library 'saed32hvt_pg_ff1p16v25c'
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'ece581_lp_top'
+  Processing 'modA'
+Information: Added key list 'DesignWare' to design 'modA'. (DDB-72)
+Information: The register 'soc_A_out_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: In design 'modA', the register 'soc_A2B_reg' is removed because it is merged to 'soc_A2D_reg'. (OPT-1215)
+Information: In design 'modA', the register 'soc_A_sum_out_reg[0]' is removed because it is merged to 'soc_A2C_reg[0]'. (OPT-1215)
+  Processing 'modB'
+Information: Added key list 'DesignWare' to design 'modB'. (DDB-72)
+Information: In design 'modB', the register 'soc_B2C_reg' is removed because it is merged to 'soc_B2D_reg'. (OPT-1215)
+Information: In design 'modB', the register 'soc_B2A_reg' is removed because it is merged to 'soc_B2D_reg'. (OPT-1215)
+  Processing 'modD'
+Information: In design 'modD', the register 'soc_D2B_reg' is removed because it is merged to 'soc_D2A_reg'. (OPT-1215)
+Information: In design 'modD', the register 'soc_D2C_reg' is removed because it is merged to 'soc_D2A_reg'. (OPT-1215)
+  Processing 'modC'
+Information: In design 'modC', the register 'soc_C2D_reg' is removed because it is merged to 'soc_C2A_reg'. (OPT-1215)
+Information: In design 'modC', the register 'soc_C2B_reg' is removed because it is merged to 'soc_C2A_reg'. (OPT-1215)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'PMT3_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT2_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT1_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT3_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT2_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT1_HVT' in the library 'saed32hvt_ff0p85v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT3_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT2_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'PMT1_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT3_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT2_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'NMT1_HVT' in the library 'saed32hvt_ff1p16v125c' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+Information: Inserting inverter snps_iso_control_inv_0 for isolation control signal en_D for iso strategy iso_D2Top2 and potentially other strategies too. (UPF-864)
+Information: Inserting inverter snps_iso_control_inv_1 for isolation control signal en_C for iso strategy iso_C2Top and potentially other strategies too. (UPF-864)
+Information: Inserting inverter snps_iso_control_inv_2 for isolation control signal en_B for iso strategy iso_B2Top3 and potentially other strategies too. (UPF-864)
+Information: Inserting inverter snps_iso_control_inv_3 for isolation control signal en_A for iso strategy iso_A2C and potentially other strategies too. (UPF-864)
+Information: Total 0 level shifters are removed. (MV-238)
+Information: Total 22 level shifters are inserted. (MV-239)
+Warning: 1 nets required level shifters but matching level shifters were not found. (MV-611)
+Warning: 7 nets has level shifter constraints but no level shifters are inserted. (MV-614)
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+Information: compile falsified 10 infeasible paths. (OPT-1720)
+  Mapping Optimization (Phase 1)
+  Mapping Optimization (Phase 2)
+  Mapping Optimization (Phase 3)
+  Mapping Optimization (Phase 4)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:16:03     616.8      1.75      50.3      11.1                           4117050624.0000
+    0:16:03     616.8      1.75      50.3      11.1                           4117050624.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Constant Register Removal
+  -----------------------------------
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Isolate Ports
+  -----------------------
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:16:03     470.7      1.43      32.5       6.7                           1200888704.0000
+    0:16:03     523.5      0.99      28.7       8.6                           1262530304.0000
+    0:16:03     523.5      0.99      28.7       8.6                           1262530304.0000
+    0:16:03     523.5      0.99      28.7       8.6                           1262530304.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+    0:16:03     523.5      0.99      28.7       8.6                           1262530304.0000
+    0:16:04     523.5      0.99      28.7       8.6                           1262530304.0000
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+Information: Level shifter LSDNSSX8_HVT from library saed32hvt_dlvl_ff0p85v125c_i1p16v cannot be inserted to net upf_clk because of main power mismatch(require power pin VDDL to be connected to domain primary power VDDH). (MV-753)
+Information: Level shifter LSDNSSX8_HVT from library saed32hvt_dlvl_ff0p85v125c_i1p16v cannot be inserted to net upf_clk because of main power mismatch(require power pin VDDL to be connected to domain primary power VDDH). (MV-753)
+Information: Total 0 level shifters are removed incrementally. (MV-238)
+Information: Total 0 level shifters are inserted incrementally. (MV-239)
+Warning: 1 nets required level shifters but matching level shifters were not found. (MV-611)
+    0:16:04     475.8      1.02      28.8       8.3                           1266192640.0000
+    0:16:04     420.9      0.98      28.1       8.3                           1037494464.0000
+    0:16:04     420.9      0.98      28.1       8.3                           1037494464.0000
+    0:16:04     416.3      0.98      28.1       8.3                           1023239232.0000
+    0:16:04     416.3      0.98      28.1       8.3                           1023239232.0000
+    0:16:04     416.3      0.98      28.1       8.3                           1023239232.0000
+    0:16:04     416.3      0.98      28.1       8.3                           1023239232.0000
+    0:16:04     414.0      0.97      28.1       8.7                           1018244032.0000
+    0:16:04     414.0      0.97      28.1       8.7                           1018244032.0000
+    0:16:04     414.0      0.97      28.1       8.7                           1018244032.0000
+    0:16:04     414.0      0.97      28.1       8.7                           1018244032.0000
+    0:16:05     428.0      0.93      26.9       8.7                           1258562816.0000
+    0:16:05     428.0      0.93      26.9       8.7                           1258562816.0000
+    0:16:05     428.0      0.93      26.9       8.7                           1258562816.0000
+    0:16:05     428.0      0.93      26.9       8.7                           1258562816.0000
+    0:16:05     428.0      0.93      26.9       8.7                           1258562816.0000
+    0:16:05     428.0      0.93      26.9       8.7                           1258562816.0000
+    0:16:05     428.0      0.93      26.9       8.7                           1258562816.0000
+    0:16:05     428.0      0.93      26.9       8.7                           1258562816.0000
+    0:16:06     428.0      0.93      26.9       8.7                           1258562816.0000
+    0:16:06     428.0      0.93      26.9       8.7                           1258562816.0000
+    0:16:06     428.0      0.93      26.9       8.7                           1258562816.0000
+    0:16:06     431.8      0.92      26.6       8.7                           1267219456.0000
+    0:16:06     431.8      0.92      26.6       8.7                           1267219456.0000
+
+Threshold voltage group cell usage:
+>> saed32cell_hvt 100.00%
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:16:06     431.8      0.92      26.6       8.7                           1267219456.0000
+  Global Optimization (Phase 30)
+  Global Optimization (Phase 31)
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+  Global Optimization (Phase 34)
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+  Global Optimization (Phase 40)
+  Global Optimization (Phase 41)
+  Global Optimization (Phase 42)
+  Global Optimization (Phase 43)
+    0:16:06     421.9      0.85      22.9       8.7                           1004351296.0000
+    0:16:07     421.9      0.85      22.9       8.7                           1004351296.0000
+    0:16:07     421.9      0.85      22.9       8.7                           1004351296.0000
+    0:16:07     412.7      0.85      22.9       8.7                           975840832.0000
+    0:16:07     412.7      0.85      22.9       8.7                           975840832.0000
+    0:16:08     412.7      0.85      22.9       8.7                           975840832.0000
+    0:16:08     412.7      0.85      22.9       8.7                           975840832.0000
+    0:16:09     413.2      0.85      22.9       8.7                           977300288.0000
+    0:16:09     413.2      0.85      22.9       8.7                           977300288.0000
+    0:16:09     414.0      0.85      22.9       8.7                           975770496.0000
+    0:16:09     414.0      0.85      22.9       8.7                           975770496.0000
+    0:16:09     416.0      0.85      22.9       8.7                           977448640.0000
+    0:16:09     416.0      0.85      22.9       8.7                           977448640.0000
+    0:16:10     416.0      0.84      22.9       8.7                           977448640.0000
+    0:16:10     416.0      0.84      22.9       8.7                           977448640.0000
+    0:16:10     416.0      0.84      22.9       8.7                           977448640.0000
+    0:16:10     416.0      0.84      22.9       8.7                           977448640.0000
+    0:16:11     416.0      0.84      22.9       8.7                           977448640.0000
+    0:16:11     416.0      0.84      22.9       8.7                           977448640.0000
+    0:16:11     416.0      0.85      22.9       8.7                           977448640.0000
+    0:16:11     416.0      0.85      22.9       8.7                           977448640.0000
+    0:16:12     416.0      0.84      22.9       8.7                           977448640.0000
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:16:12     416.0      0.84      22.9       8.7                           977448640.0000
+    0:16:12     413.2      0.84      22.9       8.7                           973476608.0000
+    0:16:12     411.2      0.84      22.9       8.7                           963768640.0000
+    0:16:12     411.2      0.84      22.9       8.7                           963768640.0000
+    0:16:12     411.2      0.84      22.9       8.7                           963768640.0000
+    0:16:12     411.2      0.84      22.9       8.7                           963768640.0000
+    0:16:13     411.2      0.84      22.9       8.7                           963768640.0000
+    0:16:13     411.2      0.84      22.9       8.7                           963768640.0000
+    0:16:13     408.4      0.84      22.7       8.7                           960761984.0000
+    0:16:13     408.4      0.84      22.7       8.7                           960761984.0000
+    0:16:13     408.7      0.84      22.7       8.7                           963593536.0000
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff0p85v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff1p16v125c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_dlvl_ff0p85v125c_i1p16v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ulvl_ff1p16v125c_i0p85v.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff0p85v25c.db'
+Loading db file '/pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_pg_ff1p16v25c.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Found 6 pin to pin connections requiring level shifter(s).  (MV-229)
+  Loading target library 'saed32hvt_dlvl_ff0p85v125c_i1p16v'
+  Loading target library 'saed32hvt_ulvl_ff1p16v125c_i0p85v'
+  Loading target library 'saed32hvt_pg_ff0p85v25c'
+  Loading target library 'saed32hvt_pg_ff1p16v25c'
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Writing verilog file '/home/reethika/common/Downloads/final_prj-team3-master/syn/outputs/ece581_lp_top.dc.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+Warning: Verilog writer has added 1 nets to module ece581_lp_top using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+1
+dc_shell> report_power
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : ece581_lp_top
+Version: Q-2019.12-SP3
+Date   : Thu Nov  9 18:08:26 2023
+****************************************
+
+
+Library(s) Used:
+
+    saed32hvt_ff1p16v125c (File: /pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff1p16v125c.db)
+    saed32hvt_ulvl_ff1p16v125c_i0p85v (File: /pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ulvl_ff1p16v125c_i0p85v.db)
+    saed32hvt_ff0p85v125c (File: /pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_ff0p85v125c.db)
+    saed32hvt_dlvl_ff0p85v125c_i1p16v (File: /pkgs/synopsys/2016/libs/SAED32_EDK/lib/stdcell_hvt/db_nldm/saed32hvt_dlvl_ff0p85v125c_i1p16v.db)
+
+
+Global Operating Voltage = 1.16 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+  Cell Internal Power  = -346.0143 uW  (101%)
+  Net Switching Power  =   4.1629 uW    (0%)
+                         ---------
+Total Dynamic Power    = -341.8513 uW  (100%)
+
+Cell Leakage Power     = 961.9327 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       -3.6580e+02            0.4904        3.5215e+08        -1.3162e+01
+                                                                                 (  -2.12%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational     19.7906            3.6726        6.0978e+08          633.2438  ( 102.12%)
+--------------------------------------------------------------------------------------------------
+Total          -3.4601e+02 uW         4.1629 uW     9.6193e+08 pW       620.0814 uW
+1
+dc_shell> report_timing
+Warning: There are infeasible paths detected in your design that were ignored during optimization. Please run 'report_timing -attributes' and/or 'create_qor_snapshot/query_qor_snapshot -infeasible_paths' to identify these paths.  (OPT-1721)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : ece581_lp_top
+Version: Q-2019.12-SP3
+Date   : Thu Nov  9 18:08:57 2023
+****************************************
+Wire Load Model Mode: enclosed
+
+  Startpoint: en_B (input port clocked by upf_clk)
+  Endpoint: soc_B1_out (output port clocked by upf_clk)
+  Path Group: upf_clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ece581_lp_top      8000                  saed32hvt_ff0p85v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock upf_clk (rise edge)                               0.00       0.00      
+  clock network delay (ideal)                             0.10       0.10      
+  input external delay                                    1.20       1.30 r    
+  en_B (in)                                               0.60       1.90 r    
+  snps_iso_control_inv_2/Y (INVX0_HVT)                    0.05       1.95 f    1.16
+  U17/Y (NBUFFX2_HVT)                                     0.15       2.10 f    1.16
+  U23/Y (NBUFFX2_HVT)                                     0.08       2.18 f    1.16
+  snps_pd_modB__iso_B2Top3_snps_soc_B1_out_UPF_ISO/Q (ISOLANDX1_HVT)
+                                                          0.15       2.32 r    1.16
+  soc_B1_out (out)                                        0.00       2.32 r    
+  data arrival time                                                  2.32      
+
+  clock upf_clk (rise edge)                               2.00       2.00      
+  clock network delay (ideal)                             0.10       2.10      
+  clock uncertainty                                      -0.50       1.60      
+  output external delay                                  -0.60       1.00      
+  data required time                                                 1.00      
+  ------------------------------------------------------------------------------------
+  data required time                                                 1.00      
+  data arrival time                                                 -2.32      
+  ------------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -1.32      
+
+
+1
+dc_shell> exit
+
+Memory usage for this session 297 Mbytes.
+Memory usage for this session including child processes 297 Mbytes.
+CPU usage for this session 207 seconds ( 0.06 hours ).
+Elapsed time for this session 1216 seconds ( 0.34 hours ).
+
+Thank you...
+

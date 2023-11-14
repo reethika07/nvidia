@@ -1,0 +1,94 @@
+ 
+****************************************
+Report : isolation_cell
+Design : ece581_lp_top
+Version: Q-2019.12-SP3
+Date   : Mon Nov 13 22:15:44 2023
+****************************************
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+ Power Domain  :  pd_modC
+
+=========================================================================================================================
+| Port                   | Boundary | Port Dir.| ISO Cell Name                | ISO Lib Cell       | ISO Strategy       |
+=========================================================================================================================
+| C_inst/soc_C2B         | LowConn  | Out      | snps_pd_modC__iso_C2B_snps_soc_C2B_UPF_ISO
+                                                                              | LSUPENX4_HVT       | iso_C2B            |
+| C_inst/soc_C_out       | LowConn  | Out      | snps_pd_modC__iso_C2Top_snps_soc_C_out_UPF_ISO
+                                                                              | LSUPENX1_HVT       | iso_C2Top          |
+| C_inst/soc_C2A         | LowConn  | Out      | snps_pd_modC__iso_C2A_snps_soc_C2A_UPF_ISO
+                                                                              | LSUPENX1_HVT       | iso_C2A            |
+| C_inst/soc_C2D         | LowConn  | Out      | snps_pd_modC__iso_C2D_snps_soc_C2D_UPF_ISO
+                                                                              | LSUPENX2_HVT       | iso_C2D            |
+=========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+ Power Domain  :  pd_modD
+
+=========================================================================================================================
+| Port                   | Boundary | Port Dir.| ISO Cell Name                | ISO Lib Cell       | ISO Strategy       |
+=========================================================================================================================
+| D_inst/soc_D1_out      | LowConn  | Out      | snps_pd_modD__iso_D2Top2_snps_soc_D1_out_UPF_ISO
+                                                                              | LSUPENX1_HVT       | iso_D2Top2         |
+| D_inst/soc_D_out       | LowConn  | Out      | snps_pd_modD__iso_D2Top1_snps_soc_D_out_UPF_ISO
+                                                                              | LSUPENX1_HVT       | iso_D2Top1         |
+| D_inst/soc_D2A         | LowConn  | Out      | snps_pd_modD__iso_D2A_snps_soc_D2A_UPF_ISO
+                                                                              | LSUPENX1_HVT       | iso_D2A            |
+| D_inst/soc_D2C         | LowConn  | Out      | snps_pd_modD__iso_D2C_snps_soc_D2C_UPF_ISO
+                                                                              | LSUPENX4_HVT       | iso_D2C            |
+| D_inst/soc_D2B         | LowConn  | Out      | snps_pd_modD__iso_D2B_snps_soc_D2B_UPF_ISO
+                                                                              | LSUPENX8_HVT       | iso_D2B            |
+=========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+ Power Domain  :  pd_modA
+
+=========================================================================================================================
+| Port                   | Boundary | Port Dir.| ISO Cell Name                | ISO Lib Cell       | ISO Strategy       |
+=========================================================================================================================
+| A_inst/soc_A2C[0]      | LowConn  | Out      | snps_pd_modA__iso_A2C_snps_soc_A2C[0]_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_A2C            |
+| A_inst/soc_A_carry_out | LowConn  | Out      | snps_pd_modA__iso_A2Top1_snps_soc_A_carry_out_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_A2Top1         |
+| A_inst/soc_A2B         | LowConn  | Out      | snps_pd_modA__iso_A2B_snps_soc_A2B_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_A2B            |
+| A_inst/soc_A2D         | LowConn  | Out      | snps_pd_modA__iso_A2D_snps_soc_A2D_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_A2D            |
+| A_inst/soc_A_out[1]    | LowConn  | Out      | snps_pd_modA__iso_A2Top2_snps_soc_A_out[1]_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_A2Top2         |
+| A_inst/soc_A_sum_out[0]
+                         | LowConn  | Out      | snps_pd_modA__iso_A2Top3_snps_soc_A_sum_out[0]_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_A2Top3         |
+| A_inst/soc_A_sum_out[1]
+                         | LowConn  | Out      | snps_pd_modA__iso_A2Top3_snps_soc_A_sum_out[1]_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_A2Top3         |
+| A_inst/soc_A2C[1]      | LowConn  | Out      | snps_pd_modA__iso_A2C_snps_soc_A2C[1]_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_A2C            |
+=========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+ Power Domain  :  pd_modB
+
+=========================================================================================================================
+| Port                   | Boundary | Port Dir.| ISO Cell Name                | ISO Lib Cell       | ISO Strategy       |
+=========================================================================================================================
+| B_inst/soc_B2A         | LowConn  | Out      | snps_pd_modB__iso_B2A_snps_soc_B2A_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_B2A            |
+| B_inst/soc_B2C         | LowConn  | Out      | snps_pd_modB__iso_B2C_snps_soc_B2C_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_B2C            |
+| B_inst/soc_B2D         | LowConn  | Out      | snps_pd_modB__iso_B2D_snps_soc_B2D_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_B2D            |
+| B_inst/soc_B_out       | LowConn  | Out      | snps_pd_modB__iso_B2Top1_snps_soc_B_out_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_B2Top1         |
+| B_inst/soc_equal       | LowConn  | Out      | snps_pd_modB__iso_B2Top2_snps_soc_equal_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_B2Top2         |
+| B_inst/soc_B1_out      | LowConn  | Out      | snps_pd_modB__iso_B2Top3_snps_soc_B1_out_UPF_ISO
+                                                                              | ISOLANDX1_HVT      | iso_B2Top3         |
+=========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+1

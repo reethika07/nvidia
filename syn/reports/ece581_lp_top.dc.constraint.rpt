@@ -1,0 +1,136 @@
+Warning: There are infeasible paths detected in your design that were ignored during optimization. Please run 'report_timing -attributes' and/or 'create_qor_snapshot/query_qor_snapshot -infeasible_paths' to identify these paths.  (OPT-1721)
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : ece581_lp_top
+Version: Q-2019.12-SP3
+Date   : Mon Nov 13 22:15:44 2023
+****************************************
+
+
+   max_delay/setup ('upf_clk' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   soc_B1_out                   1.00           2.32 r        -1.32  (VIOLATED)
+   soc_B_out                    1.00           2.32 r        -1.32  (VIOLATED)
+   soc_equal                    1.00           2.32 r        -1.32  (VIOLATED)
+   soc_A_carry_out              1.00           2.32 r        -1.32  (VIOLATED)
+   soc_A_out[1]                 1.00           2.32 r        -1.32  (VIOLATED)
+   soc_A_sum_out[1]             1.00           2.32 r        -1.32  (VIOLATED)
+   soc_A_sum_out[0]             1.00           2.20 f        -1.20  (VIOLATED)
+   soc_D1_out                   1.00           2.20 r        -1.20  (VIOLATED)
+   soc_D_out                    1.00           2.20 r        -1.20  (VIOLATED)
+   soc_C_out                    1.00           2.13 r        -1.13  (VIOLATED)
+   B_inst/soc_equal_reg/D       1.59           2.43 r        -0.84  (VIOLATED)
+   C_inst/soc_C_out_reg/D       1.57           2.41 r        -0.84  (VIOLATED)
+   D_inst/soc_D1_out_reg/D      1.57           2.41 r        -0.83  (VIOLATED)
+   B_inst/soc_B2D_reg/D         1.59           2.42 r        -0.83  (VIOLATED)
+   D_inst/soc_D2A_reg/D         1.57           2.39 r        -0.82  (VIOLATED)
+   B_inst/soc_B1_out_reg/D      1.59           2.38 r        -0.79  (VIOLATED)
+   C_inst/soc_C2A_reg/D         1.57           2.36 r        -0.79  (VIOLATED)
+   D_inst/soc_D_out_reg/D       1.57           2.36 r        -0.79  (VIOLATED)
+   B_inst/soc_B_out_reg/D       1.59           2.35 r        -0.76  (VIOLATED)
+   A_inst/soc_A_carry_out_reg/D
+                                1.59           2.31 r        -0.71  (VIOLATED)
+   A_inst/soc_A_out_reg[1]/D
+                                1.59           2.28 r        -0.69  (VIOLATED)
+   A_inst/soc_A2D_reg/D         1.59           2.28 f        -0.69  (VIOLATED)
+   A_inst/soc_A2C_reg[0]/D      1.60           2.28 f        -0.68  (VIOLATED)
+   A_inst/soc_A2C_reg[1]/D      1.59           2.24 f        -0.65  (VIOLATED)
+   A_inst/soc_A_sum_out_reg[1]/D
+                                1.59           2.24 f        -0.65  (VIOLATED)
+   D_inst/D_reg/D               1.57           2.16 r        -0.60  (VIOLATED)
+
+
+   min_delay/hold ('upf_clk' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   B_inst/soc_B1_out_reg/D      0.63           0.26 r        -0.37  (VIOLATED)
+   A_inst/soc_A_carry_out_reg/D
+                                0.62           0.27 f        -0.35  (VIOLATED)
+   B_inst/soc_equal_reg/D       0.62           0.28 f        -0.35  (VIOLATED)
+   D_inst/D_reg/D               0.62           0.35 f        -0.27  (VIOLATED)
+   D_inst/soc_D_out_reg/D       0.62           0.37 f        -0.24  (VIOLATED)
+   D_inst/soc_D1_out_reg/D      0.62           0.40 f        -0.22  (VIOLATED)
+   D_inst/soc_D2A_reg/D         0.62           0.41 f        -0.21  (VIOLATED)
+   C_inst/soc_C_out_reg/D       0.62           0.41 f        -0.21  (VIOLATED)
+   B_inst/soc_B2D_reg/D         0.63           0.43 r        -0.20  (VIOLATED)
+   A_inst/soc_A2D_reg/D         0.64           0.50 r        -0.14  (VIOLATED)
+   A_inst/soc_A_out_reg[1]/D
+                                0.62           0.50 r        -0.12  (VIOLATED)
+
+
+   min_capacitance
+
+                             Required        Actual
+   Net                      Capacitance    Capacitance       Slack
+   -----------------------------------------------------------------
+   soc_A_carry_out              1.00           0.05          -0.95  (VIOLATED)
+   soc_A_out[1]                 1.00           0.05          -0.95  (VIOLATED)
+   soc_A_sum_out[1]             1.00           0.05          -0.95  (VIOLATED)
+   soc_B1_out                   1.00           0.05          -0.95  (VIOLATED)
+   soc_B_out                    1.00           0.05          -0.95  (VIOLATED)
+   soc_equal                    1.00           0.05          -0.95  (VIOLATED)
+   soc_A_sum_out[0]             1.00           0.43          -0.57  (VIOLATED)
+   soc_B2A                      1.00           0.45          -0.55  (VIOLATED)
+   soc_A2B                      1.00           0.50          -0.50  (VIOLATED)
+   soc_A2C[0]                   1.00           0.52          -0.48  (VIOLATED)
+   soc_A2C[1]                   1.00           0.52          -0.48  (VIOLATED)
+   soc_B2C                      1.00           0.52          -0.48  (VIOLATED)
+
+   -----------------------------------------------------------------
+   Total                      12                 -8.74  
+
+   max_leakage_power
+
+                             Required        Actual
+   Design                   Leakage Power  Leakage Power     Slack
+   -----------------------------------------------------------------
+   ece581_lp_top                0.00       727155584.00   -727155584.00
+                                                                    (VIOLATED)
+
+
+Min pulse width constraints
+
+                       Required      Actual
+  Pin                pulse width   pulse width   Slack           Scenario
+--------------------------------------------------------------------------------
+  D_inst/D_reg/CLK(high)
+                      0.05          0.00         -0.05 (VIOLATED)
+  C_inst/soc_C2A_reg/CLK(high)
+                      0.05          0.00         -0.05 (VIOLATED)
+  C_inst/soc_C_out_reg/CLK(high)
+                      0.05          0.00         -0.05 (VIOLATED)
+  D_inst/soc_D1_out_reg/CLK(high)
+                      0.05          0.00         -0.05 (VIOLATED)
+  D_inst/soc_D2A_reg/CLK(high)
+                      0.05          0.00         -0.05 (VIOLATED)
+  D_inst/soc_D_out_reg/CLK(high)
+                      0.05          0.00         -0.05 (VIOLATED)
+  A_inst/soc_A2C_reg[1]/CLK(high)
+                      0.03          0.00         -0.03 (VIOLATED)
+  A_inst/soc_A2D_reg/CLK(high)
+                      0.03          0.00         -0.03 (VIOLATED)
+  A_inst/soc_A2C_reg[0]/CLK(high)
+                      0.03          0.00         -0.03 (VIOLATED)
+  A_inst/soc_A_out_reg[1]/CLK(high)
+                      0.03          0.00         -0.03 (VIOLATED)
+  A_inst/soc_A_sum_out_reg[1]/CLK(high)
+                      0.03          0.00         -0.03 (VIOLATED)
+  B_inst/soc_B_out_reg/CLK(high)
+                      0.03          0.00         -0.03 (VIOLATED)
+  A_inst/soc_A_carry_out_reg/CLK(high)
+                      0.03          0.00         -0.03 (VIOLATED)
+  B_inst/soc_B1_out_reg/CLK(high)
+                      0.03          0.00         -0.03 (VIOLATED)
+  B_inst/soc_B2D_reg/CLK(high)
+                      0.03          0.00         -0.03 (VIOLATED)
+  B_inst/soc_equal_reg/CLK(high)
+                      0.03          0.00         -0.03 (VIOLATED)
+
+1

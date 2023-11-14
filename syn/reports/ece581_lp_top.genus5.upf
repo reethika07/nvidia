@@ -1,0 +1,580 @@
+########################################################################################
+#                                                                                      #
+# Created by Genus(TM) Synthesis Solution 19.12-s121_1 on Wed Mar 22 18:08:41 PDT 2023 #
+#                                                                                      #
+########################################################################################
+
+create_power_domain pd_TOP \
+	 -include_scope
+
+create_power_domain pd_modA \
+	 -elements A_inst
+
+create_power_domain pd_modB \
+	 -elements B_inst
+
+create_power_domain pd_modC \
+	 -elements C_inst
+
+create_power_domain pd_modD \
+	 -elements D_inst
+
+create_supply_port VDDH \
+	 -direction in \
+	 -domain pd_TOP
+
+create_supply_port VDDL \
+	 -direction in \
+	 -domain pd_TOP
+
+create_supply_port VSS \
+	 -direction in \
+	 -domain pd_TOP
+
+create_supply_net VDDH \
+	 -domain pd_TOP
+
+create_supply_net VDDL \
+	 -domain pd_TOP
+
+create_supply_net VSS \
+	 -domain pd_TOP
+
+create_supply_net VDDH \
+	 -domain pd_modA \
+	 -reuse
+
+create_supply_net VDDH_A \
+	 -domain pd_modA
+
+create_supply_net VSS \
+	 -domain pd_modA \
+	 -reuse
+
+create_supply_net VDDH \
+	 -domain pd_modB \
+	 -reuse
+
+create_supply_net VDDH_B \
+	 -domain pd_modB
+
+create_supply_net VSS \
+	 -domain pd_modB \
+	 -reuse
+
+create_supply_net VDDL \
+	 -domain pd_modC \
+	 -reuse
+
+create_supply_net VDDL_C \
+	 -domain pd_modC
+
+create_supply_net VSS \
+	 -domain pd_modC \
+	 -reuse
+
+create_supply_net VDDL \
+	 -domain pd_modD \
+	 -reuse
+
+create_supply_net VDDL_D \
+	 -domain pd_modD
+
+create_supply_net VSS \
+	 -domain pd_modD \
+	 -reuse
+
+connect_supply_net VDDH \
+	 -ports VDDH
+
+connect_supply_net VDDL \
+	 -ports VDDL
+
+connect_supply_net VSS \
+	 -ports VSS
+
+set_domain_supply_net pd_TOP \
+	 -primary_power_net VDDH \
+	 -primary_ground_net VSS
+
+set_domain_supply_net pd_modA \
+	 -primary_power_net VDDH_A \
+	 -primary_ground_net VSS
+
+set_domain_supply_net pd_modB \
+	 -primary_power_net VDDH_B \
+	 -primary_ground_net VSS
+
+set_domain_supply_net pd_modC \
+	 -primary_power_net VDDL_C \
+	 -primary_ground_net VSS
+
+set_domain_supply_net pd_modD \
+	 -primary_power_net VDDL_D \
+	 -primary_ground_net VSS
+
+create_power_switch A_switch \
+	 -domain pd_modA \
+	 -input_supply_port { VDDH VDDH } \
+	 -output_supply_port { VDDH_A VDDH_A } \
+	 -control_port { en_A en_A } \
+	 -on_state { sw_on VDDH en_A } \
+	 -off_state { sw_off !en_A }
+
+create_power_switch B_switch \
+	 -domain pd_modB \
+	 -input_supply_port { VDDH VDDH } \
+	 -output_supply_port { VDDH_B VDDH_B } \
+	 -control_port { en_B en_B } \
+	 -on_state { sw_on VDDH en_B } \
+	 -off_state { sw_off !en_B }
+
+create_power_switch C_switch \
+	 -domain pd_modC \
+	 -input_supply_port { VDDL VDDL } \
+	 -output_supply_port { VDDL_C VDDL_C } \
+	 -control_port { en_C en_C } \
+	 -on_state { sw_on VDDL en_C } \
+	 -off_state { sw_off !en_C }
+
+create_power_switch D_switch \
+	 -domain pd_modD \
+	 -input_supply_port { VDDL VDDL } \
+	 -output_supply_port { VDDL_D VDDL_D } \
+	 -control_port { en_D en_D } \
+	 -on_state { sw_on VDDL en_D } \
+	 -off_state { sw_off !en_D }
+
+map_power_switch A_switch \
+	 -domain pd_modA \
+	 -lib_cells HEADX2_HVT
+
+map_power_switch B_switch \
+	 -domain pd_modB \
+	 -lib_cells HEADX2_HVT
+
+map_power_switch C_switch \
+	 -domain pd_modC \
+	 -lib_cells HEADX2_HVT
+
+map_power_switch D_switch \
+	 -domain pd_modD \
+	 -lib_cells HEADX2_HVT
+
+set_level_shifter is_modTop2C \
+	 -elements C_inst/upf_clk \
+	 -domain pd_modC \
+	 -rule both \
+	 -location parent
+
+set_level_shifter is_modTop2D \
+	 -elements D_inst/upf_clk \
+	 -domain pd_modD \
+	 -rule both \
+	 -location parent
+
+set_level_shifter is_modB2C \
+	 -elements B_inst/soc_B2C \
+	 -domain pd_modB \
+	 -location parent \
+	 -rule high_to_low
+
+set_level_shifter is_modB2D \
+	 -elements B_inst/soc_B2D \
+	 -domain pd_modB \
+	 -location parent \
+	 -rule high_to_low
+
+set_level_shifter is_modA2C \
+	 -elements { {A_inst/soc_A2C[0]} {A_inst/soc_A2C[1]} } \
+	 -domain pd_modA \
+	 -location parent \
+	 -rule high_to_low
+
+set_level_shifter is_modA2D \
+	 -elements A_inst/soc_A2D \
+	 -domain pd_modA \
+	 -location parent \
+	 -rule high_to_low
+
+set_level_shifter is_modD2Top1 \
+	 -elements D_inst/soc_D_out \
+	 -domain pd_modD \
+	 -location parent
+
+set_level_shifter is_modD2Top2 \
+	 -elements D_inst/soc_D1_out \
+	 -domain pd_modD \
+	 -location parent
+
+set_level_shifter is_modD2A \
+	 -elements D_inst/soc_D2A \
+	 -domain pd_modD \
+	 -location parent
+
+set_level_shifter is_modD2B \
+	 -elements D_inst/soc_D2B \
+	 -domain pd_modD \
+	 -location parent
+
+set_level_shifter is_modC2Top \
+	 -elements C_inst/soc_C_out \
+	 -domain pd_modC \
+	 -location parent
+
+set_level_shifter is_modC2A \
+	 -elements C_inst/soc_C2A \
+	 -domain pd_modC \
+	 -location parent
+
+set_level_shifter is_modC2B \
+	 -elements C_inst/soc_C2B \
+	 -domain pd_modC \
+	 -location parent
+
+set_isolation iso_A2B \
+	 -domain pd_modA \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements A_inst/soc_A2B
+
+set_isolation iso_A2C \
+	 -domain pd_modA \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements { {A_inst/soc_A2C[0]} {A_inst/soc_A2C[1]} }
+
+set_isolation iso_A2D \
+	 -domain pd_modA \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements A_inst/soc_A2D
+
+set_isolation iso_A2Top1 \
+	 -domain pd_modA \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements A_inst/soc_A_carry_out
+
+set_isolation iso_A2Top2 \
+	 -domain pd_modA \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements { {A_inst/soc_A_out[0]} {A_inst/soc_A_out[1]} }
+
+set_isolation iso_A2Top3 \
+	 -domain pd_modA \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements { {A_inst/soc_A_sum_out[0]} {A_inst/soc_A_sum_out[1]} }
+
+set_isolation iso_B2Top1 \
+	 -domain pd_modB \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements B_inst/soc_B_out
+
+set_isolation iso_B2Top3 \
+	 -domain pd_modB \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements B_inst/soc_B1_out
+
+set_isolation iso_B2Top2 \
+	 -domain pd_modB \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements B_inst/soc_equal
+
+set_isolation iso_B2A \
+	 -domain pd_modB \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements B_inst/soc_B2A
+
+set_isolation iso_B2C \
+	 -domain pd_modB \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements B_inst/soc_B2C
+
+set_isolation iso_B2D \
+	 -domain pd_modB \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 0 \
+	 -elements B_inst/soc_B2D
+
+set_isolation iso_C2Top \
+	 -domain pd_modC \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 1 \
+	 -elements C_inst/soc_C_out
+
+set_isolation iso_C2A \
+	 -domain pd_modC \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 1 \
+	 -elements C_inst/soc_C2A
+
+set_isolation iso_C2B \
+	 -domain pd_modC \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 1 \
+	 -elements C_inst/soc_C2B
+
+set_isolation iso_C2D \
+	 -domain pd_modC \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 1 \
+	 -elements C_inst/soc_C2D
+
+set_isolation iso_D2Top1 \
+	 -domain pd_modD \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 1 \
+	 -elements D_inst/soc_D_out
+
+set_isolation iso_D2Top2 \
+	 -domain pd_modD \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 1 \
+	 -elements D_inst/soc_D1_out
+
+set_isolation iso_D2A \
+	 -domain pd_modD \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 1 \
+	 -elements D_inst/soc_D2A
+
+set_isolation iso_D2B \
+	 -domain pd_modD \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 1 \
+	 -elements D_inst/soc_D2B
+
+set_isolation iso_D2C \
+	 -domain pd_modD \
+	 -isolation_power_net VDDH \
+	 -isolation_ground_net VSS \
+	 -clamp_value 1 \
+	 -elements D_inst/soc_D2C
+
+set_isolation_control iso_A2B \
+	 -domain pd_modA \
+	 -isolation_signal en_A \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_A2C \
+	 -domain pd_modA \
+	 -isolation_signal en_A \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_A2D \
+	 -domain pd_modA \
+	 -isolation_signal en_A \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_A2Top1 \
+	 -domain pd_modA \
+	 -isolation_signal en_A \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_A2Top2 \
+	 -domain pd_modA \
+	 -isolation_signal en_A \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_A2Top3 \
+	 -domain pd_modA \
+	 -isolation_signal en_A \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_B2Top1 \
+	 -domain pd_modB \
+	 -isolation_signal en_B \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_B2Top3 \
+	 -domain pd_modB \
+	 -isolation_signal en_B \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_B2Top2 \
+	 -domain pd_modB \
+	 -isolation_signal en_B \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_B2A \
+	 -domain pd_modB \
+	 -isolation_signal en_B \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_B2C \
+	 -domain pd_modB \
+	 -isolation_signal en_B \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_B2D \
+	 -domain pd_modB \
+	 -isolation_signal en_B \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_C2Top \
+	 -domain pd_modC \
+	 -isolation_signal en_C \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_C2A \
+	 -domain pd_modC \
+	 -isolation_signal en_C \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_C2B \
+	 -domain pd_modC \
+	 -isolation_signal en_C \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_C2D \
+	 -domain pd_modC \
+	 -isolation_signal en_C \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_D2Top1 \
+	 -domain pd_modD \
+	 -isolation_signal en_D \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_D2Top2 \
+	 -domain pd_modD \
+	 -isolation_signal en_D \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_D2A \
+	 -domain pd_modD \
+	 -isolation_signal en_D \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_D2B \
+	 -domain pd_modD \
+	 -isolation_signal en_D \
+	 -isolation_sense low \
+	 -location parent
+
+set_isolation_control iso_D2C \
+	 -domain pd_modD \
+	 -isolation_signal en_D \
+	 -isolation_sense low \
+	 -location parent
+
+add_port_state VDDH \
+	 -state { on 1.16 } \
+	 -state { off 0.0 }
+
+add_port_state VDDL \
+	 -state { on 0.85 } \
+	 -state { off 0.0 }
+
+add_port_state VSS \
+	 -state { off 0.0 }
+
+add_port_state A_switch/VDDH_A \
+	 -state { on 1.16 } \
+	 -state { off off }
+
+add_port_state B_switch/VDDH_B \
+	 -state { on 1.16 } \
+	 -state { off off }
+
+add_port_state C_switch/VDDL_C \
+	 -state { on 0.85 } \
+	 -state { off off }
+
+add_port_state D_switch/VDDL_D \
+	 -state { on 0.85 } \
+	 -state { off off }
+
+create_pst my_pst \
+	 -supplies { VDDH VDDL VSS A_switch/VDDH_A B_switch/VDDH_B C_switch/VDDL_C D_switch/VDDL_D }
+
+add_pst_state s1 \
+	 -pst my_pst \
+	 -state { on on off off on off off }
+
+add_pst_state s2 \
+	 -pst my_pst \
+	 -state { on on off on off off off }
+
+add_pst_state s3 \
+	 -pst my_pst \
+	 -state { on on off off off off on }
+
+add_pst_state s4 \
+	 -pst my_pst \
+	 -state { on on off on on off off }
+
+add_pst_state s5 \
+	 -pst my_pst \
+	 -state { on on off off off off off }
+
+add_pst_state s6 \
+	 -pst my_pst \
+	 -state { on on off off off on off }
+
+set_scope /
+
+connect_supply_net VDDH -ports { \
+	  pd_modA_iso_A2B_49_UPF_ISO/VDDG \
+	  pd_modA_iso_A2C_55_UPF_ISO/VDDG \
+	  pd_modA_iso_A2C_56_UPF_ISO/VDDG \
+	  pd_modA_iso_A2D_50_UPF_ISO/VDDG \
+	  pd_modA_iso_A2Top3_53_UPF_ISO/VDDG \
+	  pd_modA_iso_A2Top3_54_UPF_ISO/VDDG \
+	  pd_modB_iso_B2A_57_UPF_ISO/VDDG \
+	  pd_modB_iso_B2C_58_UPF_ISO/VDDG \
+	  pd_modB_iso_B2D_59_UPF_ISO/VDDG \
+	  pd_modC_iso_C2A_63_UPF_ISO/VDDG \
+	  pd_modC_iso_C2B_64_UPF_ISO/VDDG \
+	  pd_modC_iso_C2D_65_UPF_ISO/VDDG \
+	  pd_modD_iso_D2A_67_UPF_ISO/VDDG \
+	  pd_modD_iso_D2B_68_UPF_ISO/VDDG \
+	  pd_modD_iso_D2C_69_UPF_ISO/VDDG \
+	}

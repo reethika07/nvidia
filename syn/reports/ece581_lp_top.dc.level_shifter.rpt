@@ -1,0 +1,53 @@
+ 
+****************************************
+Report : level_shifter
+Design : ece581_lp_top
+Version: Q-2019.12-SP3
+Date   : Mon Nov 13 22:15:44 2023
+****************************************
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+ Power Domain : pd_TOP
+
+ **********************************************************
+ Level shifter summary for power domain
+ **********************************************************
+ No. of violating level shifters - dont_touch    : 0
+ No. of violating level shifters - no dont_touch : 0
+ No. of level shifters in domain                 : 9
+ **********************************************************
+
+===================================================================================================================================================
+ Level Shifter       Reference      Input P/G      Output P/G     Main P/G       Violation   Reason                 Voltage             Type
+                                    Net Info(Volt) Net Info(Volt) Net Info(Dir.)
+===================================================================================================================================================
+ snps_pd_modC__iso_C2B_snps_soc_C2B_UPF_ISO
+                     LSUPENX4_HVT   VDDL(0.85)     VDDH(1.16)     VDDH(Output)   FALSE       -                      (0.7,1.16)          LH
+                                    VSS(0.00)      VSS(0.00)      ---
+ snps_pd_modC__iso_C2Top_snps_soc_C_out_UPF_ISO
+                     LSUPENX1_HVT   VDDL(0.85)     VDDH(1.16)     VDDH(Output)   FALSE       -                      (0.7,1.16)          LH
+                                    VSS(0.00)      VSS(0.00)      ---
+ snps_pd_modC__iso_C2A_snps_soc_C2A_UPF_ISO
+                     LSUPENX1_HVT   VDDL(0.85)     VDDH(1.16)     VDDH(Output)   FALSE       -                      (0.7,1.16)          LH
+                                    VSS(0.00)      VSS(0.00)      ---
+ snps_pd_modD__iso_D2Top2_snps_soc_D1_out_UPF_ISO
+                     LSUPENX1_HVT   VDDL(0.85)     VDDH(1.16)     VDDH(Output)   FALSE       -                      (0.7,1.16)          LH
+                                    VSS(0.00)      VSS(0.00)      ---
+ snps_pd_modD__iso_D2Top1_snps_soc_D_out_UPF_ISO
+                     LSUPENX1_HVT   VDDL(0.85)     VDDH(1.16)     VDDH(Output)   FALSE       -                      (0.7,1.16)          LH
+                                    VSS(0.00)      VSS(0.00)      ---
+ snps_pd_modD__iso_D2A_snps_soc_D2A_UPF_ISO
+                     LSUPENX1_HVT   VDDL(0.85)     VDDH(1.16)     VDDH(Output)   FALSE       -                      (0.7,1.16)          LH
+                                    VSS(0.00)      VSS(0.00)      ---
+ snps_pd_modC__iso_C2D_snps_soc_C2D_UPF_ISO
+                     LSUPENX2_HVT   VDDL(0.85)     VDDH(1.16)     VDDH(Output)   FALSE       -                      (0.7,1.16)          LH
+                                    VSS(0.00)      VSS(0.00)      ---
+ snps_pd_modD__iso_D2C_snps_soc_D2C_UPF_ISO
+                     LSUPENX4_HVT   VDDL(0.85)     VDDH(1.16)     VDDH(Output)   FALSE       -                      (0.7,1.16)          LH
+                                    VSS(0.00)      VSS(0.00)      ---
+ snps_pd_modD__iso_D2B_snps_soc_D2B_UPF_ISO
+                     LSUPENX8_HVT   VDDL(0.85)     VDDH(1.16)     VDDH(Output)   FALSE       -                      (0.7,1.16)          LH
+                                    VSS(0.00)      VSS(0.00)      ---
+===================================================================================================================================================
+1

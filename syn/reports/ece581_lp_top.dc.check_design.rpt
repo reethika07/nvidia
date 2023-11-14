@@ -1,0 +1,29 @@
+ 
+****************************************
+check_design summary:
+Version:     Q-2019.12-SP3
+Date:        Mon Nov 13 22:15:44 2023
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     13
+    Unconnected ports (LINT-28)                                     4
+    Shorted outputs (LINT-31)                                       8
+    Constant outputs (LINT-52)                                      1
+--------------------------------------------------------------------------------
+
+Warning: In design 'modA', port 'soc_A_out[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'modC', port 'soc_in2[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'modD', port 'soc_in1[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'modD', port 'soc_A_sum_out[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'modA', output port 'soc_A2B' is connected directly to output port 'soc_A2D'. (LINT-31)
+Warning: In design 'modA', output port 'soc_A_sum_out[0]' is connected directly to output port 'soc_A2C[0]'. (LINT-31)
+Warning: In design 'modB', output port 'soc_B2A' is connected directly to output port 'soc_B2D'. (LINT-31)
+Warning: In design 'modB', output port 'soc_B2A' is connected directly to output port 'soc_B2C'. (LINT-31)
+Warning: In design 'modC', output port 'soc_C2A' is connected directly to output port 'soc_C2B'. (LINT-31)
+Warning: In design 'modC', output port 'soc_C2A' is connected directly to output port 'soc_C2D'. (LINT-31)
+Warning: In design 'modD', output port 'soc_D2A' is connected directly to output port 'soc_D2C'. (LINT-31)
+Warning: In design 'modD', output port 'soc_D2A' is connected directly to output port 'soc_D2B'. (LINT-31)
+Warning: In design 'ece581_lp_top', output port 'soc_A_out[0]' is connected directly to 'logic 0'. (LINT-52)
+1

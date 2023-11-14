@@ -1,0 +1,6 @@
+setting auto_restore_mw_cel_lib_setup true
+Initializing gui preferences from file  /u/reethika/.synopsys_dv_prefs.tcl
+dc_shell> o
+setting top_design to: 
+ORCA_TOP
+dc_shell> 

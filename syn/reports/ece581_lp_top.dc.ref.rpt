@@ -1,0 +1,42 @@
+ 
+****************************************
+Report : reference
+Design : ece581_lp_top
+Version: Q-2019.12-SP3
+Date   : Mon Nov 13 22:15:44 2023
+****************************************
+
+Attributes:
+    b - black box (unknown)
+   bo - allows boundary optimization
+    d - dont_touch
+   mo - map_only
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    s - synthetic operator
+    u - contains unmapped logic
+
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+INVX0_HVT          saed32hvt_ff1p16v125c
+                                  1.270720       8     10.165760  
+ISOLANDX1_HVT      saed32hvt_ff1p16v125c
+                                  2.541440      14     35.580160  
+LSUPENX1_HVT       saed32hvt_ulvl_ff1p16v125c_i0p85v
+                                  7.624320       5     38.121600  
+LSUPENX2_HVT       saed32hvt_ulvl_ff1p16v125c_i0p85v
+                                 10.165760       1     10.165760  
+LSUPENX4_HVT       saed32hvt_ulvl_ff1p16v125c_i0p85v
+                                 12.198912       2     24.397823  
+LSUPENX8_HVT       saed32hvt_ulvl_ff1p16v125c_i0p85v
+                                 16.773504       1     16.773504  
+NBUFFX2_HVT        saed32hvt_ff1p16v125c
+                                  2.033152      19     38.629890  
+modA                             59.977985       1     59.977985  h, n
+modB                             57.944833       1     57.944833  h, n
+modC                             46.762497       1     46.762497  h, n
+modD                             70.143745       1     70.143745  h, n
+-----------------------------------------------------------------------------
+Total 11 references                                   408.663558
+1

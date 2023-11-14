@@ -1,0 +1,98 @@
+--------------------------------------------------------------------------------
+                            Clock Gating Style Checks
+--------------------------------------------------------------------------------
+No clock gating style defined yet.
+
+--------------------------------------------------------------------------------
+                         Target Library Subset Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                             Level Shifter Checks
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+                        Level Shifter Checks Summary
+--------------------------------------------------------------------------------
+Warning: Found 6 pin to pin connections requiring level shifter(s).  (MV-229)
+Warning: Pin 'upf_clk'(VDDH[1.16v]) cannot drive 'D_inst/soc_D2A_reg/CLK'(VDDL_D[0.85v]) due to voltage differences (effective strategy is [rule = both, threshold = 0.00]). (MV-231)
+Warning: Pin 'upf_clk'(VDDH[1.16v]) cannot drive 'D_inst/D_reg/CLK'(VDDL_D[0.85v]) due to voltage differences (effective strategy is [rule = both, threshold = 0.00]). (MV-231)
+Warning: Pin 'upf_clk'(VDDH[1.16v]) cannot drive 'D_inst/soc_D_out_reg/CLK'(VDDL_D[0.85v]) due to voltage differences (effective strategy is [rule = both, threshold = 0.00]). (MV-231)
+Warning: Pin 'upf_clk'(VDDH[1.16v]) cannot drive 'D_inst/soc_D1_out_reg/CLK'(VDDL_D[0.85v]) due to voltage differences (effective strategy is [rule = both, threshold = 0.00]). (MV-231)
+Warning: Pin 'upf_clk'(VDDH[1.16v]) cannot drive 'C_inst/soc_C2A_reg/CLK'(VDDL_C[0.85v]) due to voltage differences (effective strategy is [rule = both, threshold = 0.00]). (MV-231)
+Warning: Pin 'upf_clk'(VDDH[1.16v]) cannot drive 'C_inst/soc_C_out_reg/CLK'(VDDL_C[0.85v]) due to voltage differences (effective strategy is [rule = both, threshold = 0.00]). (MV-231)
+
+--------------------------------------------------------------------------------
+                             Power Domain Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                               Always On Checks
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+                         Always On Checks Summary
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                 Design And Library Operating Condition Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                        Cell Operating Condition Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+           Power Domain and Operating Condition Consistency Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+--------------------------------------------------------------------------------
+                      Power/Ground Pin Connection Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                         Supply Operating Voltage Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                                 Model checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                          Retention Synthesis Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                          Isolation Synthesis Checks
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+                 Isolation Library Cell PG Pin Checks Summary
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                         Mapped Power Switches Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                       Power Domains Root Cells Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                                Analog Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+Please review report above for warnings and errors.
+1

@@ -1,0 +1,62 @@
+
+
+set_scope top
+
+#create power domains
+create_power_domain TOP -include_scope
+create_power_domain modA -elements {ece581_lp_top/modA}
+create_power_domain modB -elements {ece581_lp_top/modB}
+create_power_domain modC -elements {ece581_lp_top/modC}
+create_power_domain modD -elements {ece581_lp_top/modD}
+
+# create supply nets
+create_supply_net VDDH
+create_supply_net VDDL
+create_supply_net VSS
+create_supply_net VDDH_A -domain modA
+create_supply_net VDDH_B -domain modB
+create_supply_net VDDL_C -domain modC
+create_supply_net VDDL_D -domain modD
+
+#create supply ports
+create_supply_port VDDH
+create_supply_port VDDL
+create_supply_port VSS
+
+#connect_supply_nets to ports
+connect_supply_net VDDH -ports {VDDH}
+connect_supply_net VDDL -ports {VDDL}
+connect_supply_net VSS -ports {VSS}
+
+
+#ISOLATION
+#set_isolation iso_nameeeeeeee -domain modA -isolation_power_net VDDL -isolation_ground_net -clamp_value -elements modA
+
+
+#create control ports
+create_port pwr_cntrl_A
+create_port pwr_cntrl_B
+create_port pwr_cntrl_C
+create_port pwr_cntrl_D
+
+#define domain supplies
+
+#create power swicthes
+create_power_switch top_switch_a -domain modA -input_supply_port {VDDH VDDH} -output_supply_port {VDDH_A VDDH_A} -control_port {cntrl_A pwr_cntrl_A} -on_state {SW_ON VDDH cntrl_A}
+create_power_switch top_b_switch -domain modB -input_supply_port {VDDH VDDH} -output_supply_port {VDDH_B VDDH_B} -control_port {cntrl_B pwr_cntrl_B} -on_state {SW_ON VDDH cntrl_B}
+create_power_switch top_c_switch -domain modC -input_supply_port {VDDL VDDL} -output_supply_port {VDDL_C VDDL_C} -control_port {cntrl_C pwr_cntrl_C} -on_state {SW_ON VDDL cntrl_C}
+create_power_switch top_d_switch -domain modD -input_supply_port {VDDL VDDL} -output_supply_port {VDDL_D VDDL_D} -control_port {cntrl_D pwr_cntrl_D} -on_state {SW_ON VDDL cntrl_D}
+
+#levelshifter
+#set_level_shifter ls_          -domain  pg_gated -applies_to_inputs -rule low_to_high -location self
+#set_level_shifter ls_          -domain  pg_gated -applies_to_inputs -rule high_to_low -location self
+
+#map power switches 
+map_power_switch top_a_switch -domain modA -lib_cells {HEADX2_HVT}
+map_power_switch top_b_switch -domain modB -lib_cells {HEADX2_HVT}
+map_power_switch top_c_switch -domain modC -lib_cells {HEADX2_HVT}
+map_power_switch top_d_switch -domain modD -lib_cells {HEADX2_HVT}
+
+#power state definitions
+add_port_state VDDH -state {HV 1.16}
+add_port_state VDDH -state {LV 0.85}

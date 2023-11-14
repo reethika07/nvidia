@@ -1,0 +1,24 @@
+# Cadence Genus(TM) Synthesis Solution, Version 19.12-s121_1, built Dec  3 2019 15:07:17
+
+# Date: Wed Mar 22 17:55:43 2023
+# Host: auto.ece.pdx.edu (x86_64 w/Linux 3.10.0-1160.81.1.el7.x86_64) (1core*60cpus*60physical cpus*Intel Xeon E312xx (Sandy Bridge, IBRS update) 16384KB)
+# OS:   CentOS Linux release 7.9.2009 (Core)
+
+# Cadence Genus(TM) Synthesis Solution, Version 19.12-s121_1, built Dec  3 2019 15:07:17
+
+# Date: Wed Mar 22 17:55:52 2023
+# Host: auto.ece.pdx.edu (x86_64 w/Linux 3.10.0-1160.81.1.el7.x86_64) (1core*60cpus*60physical cpus*Intel Xeon E312xx (Sandy Bridge, IBRS update) 16384KB)
+# OS:   CentOS Linux release 7.9.2009 (Core)
+
+source ../scripts/genus-soc.tcl
+source ../scripts/genus-soc.tcl
+source ../scripts/genus-soc.tcl
+source ../scripts/genus-soc.tcl
+man set_level_shifter
+set_level_shifter -help
+source ../scripts/genus-soc.tcl
+source ../scripts/genus-soc.tcl
+CPI-341
+man CPI-341
+man CPI-310
+exit

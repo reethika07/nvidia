@@ -1,0 +1,40 @@
+ 
+****************************************
+Report : power state table
+Design : ece581_lp_top
+Version: Q-2019.12-SP3
+Date   : Mon Nov 13 22:15:44 2023
+****************************************
+
+Scope: ece581_lp_top
+Supply Names:  VDDH, VDDL, VSS, A_switch/VDDH_A, B_switch/VDDH_B, C_switch/VDDL_C, D_switch/VDDL_D,
+Resulting Power States in this Scope:
+            VDDH|
+                 VDDL|
+                       VSS|
+                A_switch/VDDH_A|
+                     B_switch/VDDH_B|
+                          C_switch/VDDL_C|
+                               D_switch/VDDL_D|
+ drv:         on|  on|   *|   *|   *| off| off|
+ drv:         on|  on|   *| off| off|   *| off|
+ drv:         on|  on|   *| off| off| off|   *|
+
+User PST Name: my_pst
+Defined in Scope: ece581_lp_top
+Total Power States: 6
+            VDDH|
+                 VDDL|
+                       VSS|
+                A_switch/VDDH_A|
+                     B_switch/VDDH_B|
+                          C_switch/VDDL_C|
+                               D_switch/VDDL_D|
+  s1:         on|  on| off| off|  on| off| off|
+  s2:         on|  on| off|  on| off| off| off|
+  s3:         on|  on| off| off| off| off|  on|
+  s4:         on|  on| off|  on|  on| off| off|
+  s5:         on|  on| off| off| off| off| off|
+  s6:         on|  on| off| off| off|  on| off|
+
+1

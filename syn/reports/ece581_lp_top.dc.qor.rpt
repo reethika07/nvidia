@@ -1,0 +1,85 @@
+Warning: There are infeasible paths detected in your design that were ignored during optimization. Please run 'report_timing -attributes' and/or 'create_qor_snapshot/query_qor_snapshot -infeasible_paths' to identify these paths.  (OPT-1721)
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : qor
+Design : ece581_lp_top
+Version: Q-2019.12-SP3
+Date   : Mon Nov 13 22:15:44 2023
+****************************************
+
+
+  Timing Path Group 'upf_clk'
+  -----------------------------------
+  Levels of Logic:               4.00
+  Critical Path Length:          1.02
+  Critical Path Slack:          -1.32
+  Critical Path Clk Period:      2.00
+  Total Negative Slack:        -24.65
+  No. of Violating Paths:       26.00
+  Worst Hold Violation:         -0.37
+  Total Hold Violation:         -2.68
+  No. of Hold Violations:       11.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:          4
+  Hierarchical Port Count:         61
+  Leaf Cell Count:                127
+  Buf/Inv Cell Count:              46
+  Buf Cell Count:                  25
+  Inv Cell Count:                  21
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:       111
+  Sequential Cell Count:           16
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:      299.381636
+  Noncombinational Area:   109.281923
+  Buf/Inv Area:             77.513923
+  Total Buffer Area:            50.83
+  Total Inverter Area:          26.69
+  Macro/Black Box Area:      0.000000
+  Net Area:                 33.937518
+  -----------------------------------
+  Cell Area:               408.663558
+  Design Area:             442.601076
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:           143
+  Nets With Violations:             0
+  Max Trans Violations:             0
+  Max Cap Violations:               0
+  -----------------------------------
+
+
+  Hostname: auto.ece.pdx.edu
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    0.02
+  Logic Optimization:                  0.67
+  Mapping Optimization:                9.61
+  -----------------------------------------
+  Overall Compile Time:               21.96
+  Overall Compile Wall Clock Time:    22.92
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 1.32  TNS: 24.65  Number of Violating Paths: 26
+
+
+  Design (Hold)  WNS: 0.37  TNS: 2.68  Number of Violating Paths: 11
+
+  --------------------------------------------------------------------
+
+
+1
